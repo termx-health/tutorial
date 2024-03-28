@@ -1,0 +1,64 @@
+{
+  "resourceType" : "StructureDefinition",
+  "id" : "EduPatient",
+  "url" : "https://taltech.ee/fhir/StructureDefinition/EduPatient",
+  "version" : "1.0.0",
+  "name" : "EduPatient",
+  "fhirVersion" : "5.0.0",
+  "mapping" : [ {
+    "identity" : "rim",
+    "uri" : "http://hl7.org/v3",
+    "name" : "RIM Mapping"
+  } ],
+  "kind" : "logical",
+  "abstract" : false,
+  "type" : "https://taltech.ee/fhir/StructureDefinition/EduPatient",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "EduPatient",
+      "path" : "EduPatient"
+    }, {
+      "definition" : "Personal identification code",
+      "id" : "EduPatient.code",
+      "max" : "1",
+      "min" : 0,
+      "path" : "EduPatient.code",
+      "short" : "Personal identification code",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    }, {
+      "definition" : "Patient name",
+      "id" : "EduPatient.name",
+      "max" : "1",
+      "min" : 1,
+      "path" : "EduPatient.name",
+      "short" : "Patient name",
+      "type" : [ {
+        "code" : "HumanName"
+      } ]
+    }, {
+      "definition" : "Sex at birth",
+      "id" : "EduPatient.sex",
+      "max" : "1",
+      "min" : 0,
+      "path" : "EduPatient.sex",
+      "short" : "Sex at birth",
+      "type" : [ {
+        "code" : "code"
+      } ]
+    }, {
+      "definition" : "Date of birth",
+      "id" : "EduPatient.birthdate",
+      "max" : "1",
+      "min" : 0,
+      "path" : "EduPatient.birthdate",
+      "short" : "Date of birth",
+      "type" : [ {
+        "code" : "dateTime"
+      } ]
+    } ]
+  }
+}

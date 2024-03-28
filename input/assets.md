@@ -1,0 +1,1 @@
+This folder contains the list of assets (icons, libraries, etc) used in TermX.

@@ -1,0 +1,26 @@
+{
+  "id" : "WikiDemo",
+  "name" : "WikiDemo",
+  "resourceType" : "StructureDefinition",
+  "kind" : "logical",
+  "url" : "http://example.org/fhir/wiki-demo",
+  "type" : "http://example.org/fhir/wiki-demo",
+  "fhirVersion" : "5.0.0",
+  "abstract" : false,
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation" : "specialization",
+  "differential" : {
+    "element" : [ {
+      "id" : "WikiDemo",
+      "path" : "WikiDemo"
+    }, {
+      "id" : "WikiDemo.field",
+      "max" : "1",
+      "min" : 0,
+      "path" : "WikiDemo.field",
+      "type" : [ {
+        "code" : "string"
+      } ]
+    } ]
+  }
+}
