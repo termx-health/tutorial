@@ -369,8 +369,9 @@ Example of empty [file](/terminology-server/concept-map.csv).
 
 # LOINC
 ### Source 
--   Official site: [http://loing.org](http://loing.org)
--   The LOINC database: [https://loinc.org/downloads/](https://loinc.org/downloads/)
+-   Official site: [loing.org](http://loing.org)
+-   The LOINC database: [loinc.org/downloads](https://loinc.org/downloads/)
+-   The archive of LOINC versions: [loinc.org/downloads/archive](https://loinc.org/downloads/archive/)
 
 ### Import
 -   Select from menu "Management" -> "Integration" -> "LOINC" -> "LOINC import"

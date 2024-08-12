@@ -184,6 +184,14 @@
         "ct" : "markdown"
       } ]
     }, {
+      "code" : "d1743f71-5796-4b9b-a566-1e983a08af06",
+      "contents" : [ {
+        "name" : "SNOMED CT configuration",
+        "slug" : "snomed-ct-configuration",
+        "lang" : "en",
+        "ct" : "markdown"
+      } ]
+    }, {
       "code" : "9480117c-cf92-473f-a6ed-1d52f8f30f3a",
       "contents" : [ {
         "name" : "Snowstorm",

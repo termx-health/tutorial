@@ -36,14 +36,7 @@ Task status change impacts futher behaviour:
 
 #### Translations: language module
 
-Configuration of language modules is defined using Code System 'snomed-module'. To add a new language module you have to add a new concept.
-- concept code: language code
-- concept desugnation 'display': language module name (will be shown in modules selection)
-- concept property 'language': language of module
-- concept property 'refsetId': snomed id of language refset
-- concept property 'moduleId': snomed id of language module
-  
-![Snomed language module](files/88/snomed-module.png)
+Configuration of language modules is defined using Code System 'snomed-module'. More info in [SNOMED CT configuration](page:snomed-ct-configuration).
 
 
 

@@ -1,7 +1,7 @@
 ## Links
 ### Namespaces in the links
 ```
-[text]​(namespace:value1|value2)
+[text](namespace:value1|value2)
 ```
 
 Examples:
