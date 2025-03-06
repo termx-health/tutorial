@@ -428,11 +428,27 @@ File locations in downloaded zip file:
 -   Classification of the rare diseases: [https://www.orphadata.com/classifications/](https://www.orphadata.com/classifications/)
 
 ### Import
--   Select from menu "Management" -> "Integration" -> "Orphanet" -> "Rare diseases".
--   Press the "Set default data" button.  
+
+> The Orphanet import is an extension of the code system file importer. Please read about the code system file importer first.
+{.is-info}
+
+Select from menu "Terminology" -> "Import" -> "Orphanet" -> "Rare diseases".
+
+- In the case of the first import, select the new code system and specify:
+  - Id: orpha-rare-diseases
+  - Title: ORPHA rare diseases
+  - Url: https://www.orphadata.com/classification/orpha-rare-diseases
+  - Version: 1.0.0
+- Select “Source" -> “File” and specify the file downloaded from https://www.orphadata.com/classifications/.  
+
+The import window should look like this:
+
 ![orphanet-rare-deaseses-default.png](files/71/orphanet-rare-deaseses-default.png){width=500}
 
 > Please verify data! Check file name, uri, code system code and name twice.
 {.is-warning}
--   Press "Send request".
 
+- Press the "Process" button.  
+
+- In the case of next import select already created code system ("orpha-rare-diseases") and “Merge” stategy, if you need several classifications in the one code system and repeat import.
+- You can create separate code system for every Orphanet classfication if needed.
