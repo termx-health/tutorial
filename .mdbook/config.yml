@@ -8,7 +8,7 @@ source:
   format: termx            # space.json + pages.json + input/*.md
 
 # FHIR terminology server for expanding {{csc:}}/{{vsc:}} at build time.
-tx-server: https://termx.kodality.dev/api/fhir
+tx-server: https://dev.termx.org/api/fhir
 
 theme:
   skin: helex
