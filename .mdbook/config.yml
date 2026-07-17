@@ -1,0 +1,16 @@
+# mdbook site configuration — https://github.com/igorboss/mdbook
+site:
+  title: TermX tutorial
+  description: Guide to the TermX terminology, wiki and modelling platform.
+  lang: en
+
+source:
+  format: termx            # space.json + pages.json + input/*.md
+
+# FHIR terminology server for expanding {{csc:}}/{{vsc:}} at build time.
+tx-server: https://dev.termx.org/api/fhir
+
+theme:
+  skin: helex
+
+search: true
