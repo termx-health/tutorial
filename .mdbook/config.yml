@@ -1,0 +1,13 @@
+# mdbook site configuration — https://github.com/igorboss/mdbook
+site:
+  title: TermX tutorial
+  description: Guide to the TermX terminology, wiki and modelling platform.
+  lang: en
+
+source:
+  format: termx            # space.json + pages.json + input/*.md
+
+theme:
+  skin: paper
+
+search: true
