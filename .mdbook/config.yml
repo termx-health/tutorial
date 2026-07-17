@@ -8,6 +8,6 @@ source:
   format: termx            # space.json + pages.json + input/*.md
 
 theme:
-  skin: paper
+  skin: helex
 
 search: true
