@@ -1,0 +1,8 @@
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*~
+
+# mdbook build output (generated locally / in CI)
+.mdbook/.cache/
+.mdbook/dist/
