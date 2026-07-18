@@ -117,4 +117,23 @@ mdbook builds on [VitePress](https://vitepress.dev) and uses the same Markdown e
 
 The result is a searchable, themeable static site published straight to GitHub Pages — no artifacts to download or extra hosting step.
 
+## Differences from the TermX Wiki
+
+The static site uses the same Markdown engine as the wiki, so almost all syntax renders identically — headings, styling, tables (including `{.dense}` and multiline tables), blockquote admonitions (`{.is-info}` …), content tabs, collapsibles, task lists, footnotes, sub/superscript, emoji, the `{{def:}}` / `{{csc:}}` / `{{vsc:}}` includes, and Draw.io, PlantUML and Mermaid diagrams.
+
+A few things to keep in mind when authoring for the static site:
+
+* **Internal links** — use the wiki link namespaces, which the generator resolves: `page:<slug>` (or `page:<space>/<slug>`), `cs:`, `vs:`, `ms:`, `concept:`, or a full external URL. Avoid application routes such as `/wiki/<space>/<slug>` or `/spaces` — those exist only in the running wiki and will not resolve on the static site.
+* **Terminology expansion** — `{{csc:}}` / `{{vsc:}}` tables are expanded at **build time** against the configured `tx-server`, so the referenced code system / value set must be reachable there when the site is built.
+
+## Page metadata & SEO
+
+The generator produces standard SEO metadata from the export, with no extra authoring:
+
+* **Title** — each page's `<title>` is the page **name** (from `pages.json`) — e.g. *"Import | TermX tutorial"*.
+* **Description** — a `<meta name="description">` is derived from the page's first paragraph.
+* **Sitemap, canonical & Open Graph** — a `sitemap.xml`, `<link rel="canonical">` and Open Graph / Twitter tags are generated per page when the site URL is known. That URL is auto-detected in CI (`https://<owner>.github.io/<repo>/`, or a `CNAME` domain); override it with `site.url` in `.mdbook/config.yml`.
+
+Site-wide metadata — title, description, language, theme, terminology server and search — lives in the `.mdbook/config.yml` file described under [Project configuration](#project-configuration).
+
 *The source code can be found [here](https://github.com/igorboss/mdbook).*
