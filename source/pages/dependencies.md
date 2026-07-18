@@ -5,27 +5,19 @@ TermX utilizes several open-source projects created by TermX. The built NPM pack
 
 ### NPM
 
-* https://github.com/termx-health/utils
-* https://github.com/termx-health/marina
+* https://github.com/termx-health/web-commons
 
 ### Gradle
-
-TermX Commons
-
-* https://github.com/termx-health/kodality-commons
-* https://github.com/termx-health/kodality-commons-micronaut
-* https://github.com/termx-health/commons-dbutils
 
 FHIR
 
 * https://github.com/termx-health/kefhir
-* https://github.com/termx-health/zmei
 
 TermX
 
 * https://github.com/termx-health/termx-server
 * https://github.com/termx-health/termx-web
-* https://github.com/termx-health/fsh-chef
+* https://github.com/termx-health/termx-chef
 * https://github.com/termx-health/termx-fml
 * https://github.com/termx-health/termx-ssg
 * https://github.com/termx-health/structure-definition-viewer
