@@ -10,6 +10,8 @@ All terminology resources are **versioned**. A resource (for example a code syst
 
 You change status explicitly from the version summary. A version can also be **duplicated** to start the next revision from the previous content.
 
+![Resource summary with versions](files/tutorial/code-system-summary.png)
+
 ## Why versioning matters
 
 Versioning lets you change a resource without breaking consumers that depend on an earlier release. A [value set](page:value-set-rule-based-expansion) always expands against fixed code system versions, and a [concept map](page:concept-map-mapping) always maps between fixed versions, so results stay reproducible over time.

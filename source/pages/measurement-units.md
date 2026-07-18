@@ -4,6 +4,8 @@
 
 TermX provides a full [UCUM](https://ucum.org/) (Unified Code for Units of Measure) service for validating, analysing and converting units of measure. It is used both interactively, from the **UCUM** menu, and by other resources (for example when an [observation definition](page:observation-definitions) declares the units it permits).
 
+![UCUM menu](files/tutorial/ucum.png)
+
 ## Operations
 
 The UCUM service exposes four operations:

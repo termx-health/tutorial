@@ -1,5 +1,8 @@
 TermX offers tight integration with [Snowstorm server](page:snowstorm) using its internal [API](https://snowstorm.termx.org/swagger-ui.html).
 
+> **Snowstorm requirements for imports.** Snowstorm runs **read-only by default** — to import content you must start it in write mode (do not pass `--snowstorm.rest-api.readonly=true`). Delta imports require **Snowstorm ≥ 10.11.2** (older versions such as 10.2.1 fail with `ConcurrentModificationException`), and the underlying **Elasticsearch must stay at 8.11.1**.
+{.is-warning}
+
 ## Editions
 SNOMED CT is managed and distributed by various organizations and national bodies in different countries, and they may create their editions of SNOMED CT to meet their specific needs. 
 These editions are typically based on the international version of SNOMED CT. Still, they may include additional language translations, extensions, or customizations to suit the requirements of a particular region or healthcare system.
@@ -14,6 +17,8 @@ After that, you can create a country-specific edition. You should specify the tw
 ### Published branches
 You can import the published branches to the edition. Select proper edition -> ... -> Import from RF2. Specify the RF2 archive file and SNAPSHOT as a type of import.
 > NB! The import of the published branches is not revertable. The only way to delete the published branch is to delete the edition and import it again.
+
+> **Large RF2 archives (scan-first import).** Since release 3.2, RF2 archives are uploaded once to object storage ([Bob / MinIO](page:minio-service)) and processed without buffering the whole file in memory. You can **dry-run scan** an archive (a fast `summary` scan or a `full` scan) to preview what it contains, compute a **delta** against the current baseline, and inspect concept usage before committing the import — the heavy work runs as a background job with phase-by-phase progress. Uploaded archives are cached for 7 days. The SNOMED International RF2 release is ≈549 MB, within the default 600 MB request-size limit; raise `micronaut.server.max-request-size` / `...multipart.max-file-size` and the reverse-proxy body limit for larger archives.
 
 ![](files/109/SNOMEDCT-EE-with-modal.png){width=500}
 

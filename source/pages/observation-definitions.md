@@ -2,6 +2,8 @@ An **observation definition** describes a template for a clinical or laboratory 
 
 Like other TermX resources, an observation definition is identified by a `code`, has a canonical `url`, a `publisher` and multilingual names, and moves through the draft → active → retired lifecycle described in [authoring](page:authoring).
 
+![Observation definitions](files/tutorial/observation-definitions.png)
+
 ## What an observation definition captures
 
 - **Value** — the permitted result: a data type, quantitative units (validated against [UCUM](page:measurement-units)), and permitted coded values.

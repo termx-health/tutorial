@@ -2,6 +2,8 @@ TermX treats **SNOMED CT** as an external terminology, stored and served by a [S
 
 ## Browsing SNOMED CT
 
+![SNOMED CT browser](files/tutorial/snomed-dashboard.png)
+
 The browser presents the state of the SNOMED CT branch currently selected by TermX. With it you can:
 
 - browse the concept taxonomy;

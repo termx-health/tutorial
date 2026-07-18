@@ -31,6 +31,14 @@ For every role in the user info application look for TermX privilege with the sa
 Every privilege specifies access to the specific resource types or/and to the list of resources and related actions.
 See [TermX permissions](page:permissions) for details.
 
+## Local development (no SSO)
+For local development you don't need an SSO server. Two options are available:
+- **Guest mode** — set `OAUTH_ISSUER=dummy` and `OAUTH_CLIENT_ID=dummy` (as the [quickstart](page:developer-quickstart) does) to run with a Guest account that has all privileges.
+- **Mock auth** — enable `AUTH_MOCK_ENABLED=true` and send `Authorization: Bearer <profile-key>` to act as a bundled user. The default profiles map to `admin` (`*.*.*`), `publisher` (`*.*.maintain`), `editor` (`*.*.write`) and `viewer` (`*.*.read`), so you can exercise the [permission model](page:security) without Keycloak.
+
+> These modes are for development only — never enable them in a production deployment.
+{.is-warning}
+
 ## Keycloak
 [Keycloak](https://www.keycloak.org) is an open-source software to allow single sign-on with Identity and Access Management. Keycloak provides user federation (such as LDAP or Active Directory), strong authentication, user management, fine-grained authorization, and more. Keycloak implements the OpenID Connect protocol and can also authenticate users with existing OpenID Connect or SAML 2.0 Identity Providers.
 

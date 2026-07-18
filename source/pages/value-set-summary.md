@@ -2,6 +2,8 @@
 
 Every [value set](page:value-set) has a summary dashboard, organised into a header and cards — the same layout as the [code system summary](page:code-system-summary).
 
+![Value set summary](files/tutorial/value-set-summary.png)
+
 The header provides the value set name and links to:
 - **Edit** — the value set form, where the value set data can be changed.
 - **Concepts** — the expanded list of concepts contained in the value set.
