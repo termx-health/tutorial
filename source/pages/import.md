@@ -26,7 +26,6 @@ The import is identical to the code system import.
 -   ICD10 official page: [https://www.who.int/standards/classifications/classification-of-diseases](https://www.who.int/standards/classifications/classification-of-diseases)
 -   ICD10 official browser: [https://icd.who.int/browse10/2019/en#/](https://icd.who.int/browse10/2019/en#/)
 -   ICD10 official download site (you should have an account in WHO): [https://apps.who.int/classifications/apps/icd/ClassificationDownload/DLArea/Download.aspx](https://apps.who.int/classifications/apps/icd/ClassificationDownload/DLArea/Download.aspx)
--   Mirror for the latest ICD10 version: [https://ghcr.io/termx-health/repository/store-public/terminology/int-icd10en.zip](https://ghcr.io/termx-health/repository/store-public/terminology/int-icd10en.zip)
 
 ### Import
 -   Select from menu "Management" -> "Integration" -> "ICD10 WHO import".
@@ -36,29 +35,6 @@ The import is identical to the code system import.
 > We recomment to use default settings for ICD10 import.
 {.is-info}
 -   Press "Send request".
-
-## Estonian Edition
-### Source
--   Official site of Estonian ICD10 (RHK10 in Estonian): [https://rhk.sm.ee/](https://rhk.sm.ee/)
--   Official download site: [https://pub.e-tervis.ee/classifications/RHK-10](https://pub.e-tervis.ee/classifications/RHK-10)
--   Mirror for latest RHK10: [https://ghcr.io/termx-health/repository/store-public/terminology/icd10\_v8.zip](https://ghcr.io/termx-health/repository/store-public/terminology/icd10_v8.zip)
-
-> Please use mirror instead of the official download site. There are was removed `&gt;` tags in V01-Y99.xml file from RHK10v8.zip archive in order to prevent parser from crash.
-{.is-warning}
-
-### Import
--   Select from menu "Management" -> "Integration" -> "ICD10 Est import".
--   Press the "Set default data" button.
-
-> We recommend to use default settings for ICD10 import.
-{.is-info}
--   Press "Send request".
-
-> We recommend to import WHO Edition of ICD10 first.
-{.is-info}
-
-> We recommend to use "icd10..." in the code of code system. In this case concepts of WHO Edition and Estonian Edition will be shared. In other case there will be two independent classification.
-{.is-success}
 
 # ATC
 ## WHO Edition
@@ -78,7 +54,7 @@ The import is identical to the code system import.
 ### Source
 -   Estonian official registry available from Ravimiamet x-Road services
 -   Plain text available through [http://ravimiamet.ee](http://ravimiamet.ee) website -> "e-teenused" → "Andmete allaadimine" → "ATC puu" → "ATC.csv" will be generated without hierarchy.
--   The mirror of ATC.csv is available on [https://ghcr.io/termx-health/repository/store-public/terminology/est-atc.csv](https://ghcr.io/termx-health/repository/store-public/terminology/est-atc.csv)
+-   The mirror of ATC.csv is available on [est-atc.csv](/attachments/resources/est-atc.csv)
 
 ### Import
 -   Select from menu "Management" -> "Integration" -> "ATC Est import".

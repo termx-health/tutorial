@@ -174,11 +174,6 @@ Move to the folder with `docker-compose.yml` (in our example `termx`).
 docker-compose stop
 ```
 
-## Helm
-
-TermX can be installed by [Helm chart](https://github.com/termx-health/kodality-helm/tree/master/charts/termx). 
-
-*NB: Some components have to be installed separately; thus, there is no chart in the Gitlab project!*
 
 
 

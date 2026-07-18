@@ -280,8 +280,3 @@ server {
 ```
 
 
-### Helm <i class="mdi mdi-ubuntu"></i>
-Snowstorm Server can be installed by [Helm chart](https://github.com/termx-health/kodality-helm/tree/master/charts/snowstorm).
-
-**NB!** This is not an official chart. It's made only for testing purposes.
-
