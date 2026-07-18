@@ -1,4 +1,4 @@
-TermX utilizes several open-source projects created by TermX. The built NPM packages, Java libraries, and Docker images are published to the TermX Nexus repository (ghcr.io/termx-health).
+TermX utilizes several open-source projects created by TermX. The built NPM packages, Java libraries, and Docker images are published to GitHub Packages (github.com/orgs/termx-health/packages).
 
 
 ## Source code
@@ -31,12 +31,11 @@ TermX
 * https://github.com/termx-health/structure-definition-viewer
 
 
-## Nexus 
+## Packages
 
-* https://ghcr.io/termx-health/repository/npm/
-* https://ghcr.io/termx-health/repository/docker-public/
-* https://ghcr.io/termx-health/repository/maven-releases/
-* https://ghcr.io/termx-health/repository/maven-snapshots/
+* https://github.com/orgs/termx-health/packages?ecosystem=npm
+* https://github.com/orgs/termx-health/packages?ecosystem=container
+* https://github.com/orgs/termx-health/packages?ecosystem=maven
 
 
 ## RAW
