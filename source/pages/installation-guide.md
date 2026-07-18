@@ -182,7 +182,7 @@ BOB_MINIO_SECRET_KEY=xxxx
 - GITHUB_APP_NAME. The GitHub App used for content publishing. Read more on the [GitHub application page](page:github-app). Register the App following the GitHub [manual](https://docs.github.com/en/apps/creating-github-apps/registering-a-github-app/registering-a-github-app); the client ID and secret are configured for that App.
 
 #### Object storage
-- BOB_MINIO_URL, BOB_MINIO_ACCESS_KEY, BOB_MINIO_SECRET_KEY. Connection to the S3-compatible [MinIO service](page:minio-service) that stores Wiki attachments and terminology archive uploads (the "Binary Object Bank", Bob). If the object store URL is not set, object storage is disabled and uploads return `503`. The equivalent `MINIO_URL` / `MINIO_ACCESS_KEY` / `MINIO_SECRET_KEY` names bind to the same properties.
+- BOB_MINIO_URL, BOB_MINIO_ACCESS_KEY, BOB_MINIO_SECRET_KEY. Connection to the S3-compatible [MinIO service](page:minio-service) that stores Wiki attachments and terminology archive uploads (the "Binary Object Bank", Bob). The `BOB_` prefix keeps these app credentials distinct from the MinIO server's own root account (`MINIO_ROOT_USER` / `MINIO_ROOT_PASSWORD`). If the object store URL is not set, object storage is disabled and uploads return `503`.
 
 #### Email
 - SMTP_*. Optional SMTP configuration for import notifications. Check status at `GET /management/email/status`.
