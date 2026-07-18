@@ -34,14 +34,14 @@ Supported namespaces:
 ### Page Links 
 - [Relative link](/spaces)
 - [Absolute link](https://dev.termx.org/spaces)
-- [Page in current Space](page:markdown-syntax)
+- [Page in current Space](page:basic-markdown-syntax)
 - [Page from other Space](page:healthsense/mammography)
 
 +++ Code
 ```
 [Relative link](/spaces)
 [Absolute link](https://dev.termx.org/spaces)
-[Page in current Space](page:markdown-syntax)
+[Page in current Space](page:basic-markdown-syntax)
 [Page from other Space](page:healthsense/mammography)
 ```
 +++
