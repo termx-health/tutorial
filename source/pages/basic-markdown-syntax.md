@@ -211,13 +211,13 @@ Lorem ipsum dolor CTRL + C
 ## Links
 [Absolute link to external page](https://wikipedia.org)
 
-[Relative link to internal page](/wiki/termx-tutorial/extended-syntax)
+[Relative link to internal page](page:extended-markdown-syntax)
 
 +++ Code
 ```
 [Absolute link to external page](https://wikipedia.org)
 
-[Relative link to internal page](/wiki/termx-tutorial/extended-syntax)
+[Relative link to internal page](page:extended-markdown-syntax)
 ```
 +++
 
