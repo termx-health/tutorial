@@ -43,6 +43,15 @@
         "contentType" : "markdown",
         "modifiedAt" : "2023-10-25T12:20:46.795166Z"
       } ]
+    }, {
+      "code" : "54596b3e-cc80-471c-acd2-3c8c4828a454",
+      "contents" : [ {
+        "name" : "FHIR terminology ecosystem",
+        "slug" : "fhir-terminology-ecosystem",
+        "lang" : "en",
+        "contentType" : "markdown",
+        "modifiedAt" : "2026-07-18T00:00:00Z"
+      } ]
     } ]
   }, {
     "code" : "ea8bc8e2-884b-4fd8-93ef-fc8bdd0d0e5a",
@@ -633,6 +642,15 @@
         "lang" : "en",
         "contentType" : "markdown",
         "modifiedAt" : "2023-11-09T07:29:06.535285Z"
+      } ]
+    }, {
+      "code" : "bcbd760d-b423-4885-a71a-32f1ad60d8dd",
+      "contents" : [ {
+        "name" : "Configuration reference",
+        "slug" : "configuration-reference",
+        "lang" : "en",
+        "contentType" : "markdown",
+        "modifiedAt" : "2026-07-18T00:00:00Z"
       } ]
     } ]
   }, {

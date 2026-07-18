@@ -100,6 +100,17 @@ If you have many files with similar structures you can also use the predefined t
 
 ![file-import-structure-with-template.png](files/71/file-import-structure-with-template.png){width=500}
 
+#### Column format
+The importer accepts **CSV**, **TSV** and **XLSX**. For XLSX the worksheet holding the concepts must be named **`concepts`**; CSV columns may be separated by `;` or `,`.
+
+- **Identifier column** — the concept code is auto-detected from a column named `id`, `code`, `identifier` or `kood`.
+- **Designations** — a language is appended to the property with a colon, e.g. `display:en`, `definition:et`. (The legacy `#` separator — `definition#et` — is still accepted on import for backwards compatibility.) An explicit display order can be added as `::{order}`.
+- **Coding properties** — split into two columns `{property}#code` and `{property}#system`.
+- **Associations** — `is-a`, `parent`, `child`, `partOf`, `groupedBy` and `classifiedWith` columns hold `#`-joined references.
+- **Data types** — decimals are stored without trailing zeros; dates accept `YYYY-MM-DD`, `DD.MM.YYYY`, `DD.MM.YY` or `MM/DD/YYYY`; booleans accept `1`/`true`.
+
+Re-importing an unchanged file creates **no new concept versions** — only genuine changes produce a new version. Malformed input is reported with specific error codes (for example `TE740` when an XLSX has no `concepts` sheet).
+
 ### Processing
 As a result of processing the definition of the code system (button "Process")
 -   the new code system will be created (or updated)
