@@ -133,7 +133,7 @@
 > Released on **July 22nd, 2022**
 {.is-info}
 
-A new web page (wiki.kodality.dev) with the KTS documentation is available!
+A new web page (https://github.com/termx-health/termx-server/tree/main/docs/release-notes) with the KTS documentation is available!
 
 This brings new features:
 - Import of the custom code systems and value sets using plain text files
