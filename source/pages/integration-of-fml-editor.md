@@ -5,7 +5,7 @@ The FML Editor is a self-hosted web JavaScript application, providing a structur
 
 ## Running inside an iframe[^1]
 
-[^1]: https://gitlab.com/kodality/terminology/termx-fml
+[^1]: https://github.com/termx-health/termx-fml
 
 To run the FML editor within your application, follow these steps:
 
@@ -18,7 +18,7 @@ To run the FML editor within your application, follow these steps:
 The editor within the iframe will send an `init` event when it's ready to proceed with further actions.
 
 To initialize the FML editor, the client should supply the `bundle`, `structure map` and optionally, `contained resources` using the `load`[^2] action.
-[^2]: https://gitlab.com/kodality/terminology/termx-fml/-/blob/main/src/app/context/iframe.context.ts#L10
+[^2]: https://github.com/termx-health/termx-fml/blob/main/src/app/context/iframe.context.ts#L10
 
 
 ```mermaid

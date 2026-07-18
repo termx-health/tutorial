@@ -142,12 +142,12 @@ Consectetur adipiscing elit
 
 ## Images
 ![External image](https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png){width=250 title=Wikipedia align=right}
-![nternal page attachment](files/64/pm.png){width=300 title="Kodality webpage background"}
+![nternal page attachment](files/64/pm.png){width=300 title="TermX webpage background"}
 
 +++ Code
 ```
 ![External image](https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png){width=250 title=Wikipedia align=right}
-![nternal page attachment](files/64/pm.png){width=300 title="Kodality webpage background"}
+![nternal page attachment](files/64/pm.png){width=300 title="TermX webpage background"}
 ```
 +++
 Check [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) specification for additional parameters.

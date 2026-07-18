@@ -12,7 +12,7 @@ The minimal deployment required to support operations with SNOMED in the TermX i
 
 ### With SNOMED browser
 The additional SNOMED browser (like [official browser](https://browser.ihtsdotools.org)) may be installed in your environment to have an additional view of SNOMED concepts (blue box  on the deployment diagram). 
-> See "snomed-browser" component in the docker-compose.yml. We recommend using the image of the SNOMED browser from `docker.kodality.com/snomedct-browser:latest`.
+> See "snomed-browser" component in the docker-compose.yml. We recommend using the image of the SNOMED browser from `ghcr.io/termx-health/snomedct-browser:latest`.
 The web server also should be configured to provide access to the Snowstorm API and SNOMED Browser. 
 > Ensure that `/snowstorm/`, `/snomed-ct/` and `/snowstorm/snomed-ct/` locations are configured in the web server.
 
@@ -116,13 +116,13 @@ You can also install public SNOMED Browser
 ```
   browser:
     restart: unless-stopped
-    image: docker.kodality.com/snomedct-browser:latest
+    image: ghcr.io/termx-health/snomedct-browser:latest
     container_name: browser
     depends_on:
       - snowstorm-public
     environment:
       - API_HOST=http://snowstorm-public:8080/
-      - TERMX_URL=https://termx.kodality.dev/
+      - TERMX_URL=https://dev.termx.org/
     networks:
       - elastic
     ports:
@@ -143,7 +143,7 @@ Implements basic authentication for snowstorm service.
 The example configuration for private Snowstorm configuration:
 ```
 server {
-    server_name snowstorm.kodality.dev;
+    server_name snowstorm.termx.org;
 
     auth_basic           "Authenticate yourself!";
     auth_basic_user_file /etc/nginx/.htpasswd; #user-password credentials
@@ -168,12 +168,12 @@ server {
 
 }
 server {
-    if ($host = snowstorm.kodality.dev) {
+    if ($host = snowstorm.termx.org) {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 
 
-    server_name snowstorm.kodality.dev;
+    server_name snowstorm.termx.org;
     listen 80;
     return 404; # managed by Certbot
 }
@@ -186,7 +186,7 @@ To change password use `htpasswd /etc/nginx/.htpasswd username` where 'username'
 The example configuration for public Snowstorm configuration:
 ```
 server {
-    server_name snowstorm-public.kodality.dev;
+    server_name snowstorm.termx.org;
 
     client_max_body_size 2G;
 
@@ -224,8 +224,8 @@ server {
 
 
     listen 443 ssl; # managed by Certbot
-    ssl_certificate /etc/letsencrypt/live/snowstorm-public.kodality.dev/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/snowstorm-public.kodality.dev/privkey.pem; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/snowstorm.termx.org/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/snowstorm.termx.org/privkey.pem; # managed by Certbot
     include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 }
@@ -234,7 +234,7 @@ server {
 The example configuration for Daily build Snowstorm configuration:
 ```
 server {
-    server_name snowstorm-public-dailybuild.kodality.dev;
+    server_name snowstorm.termx.org;
 
     client_max_body_size 2G;
 
@@ -272,16 +272,11 @@ server {
 
 
     listen 443 ssl; # managed by Certbot
-    ssl_certificate /etc/letsencrypt/live/snowstorm-public-dailybuild.kodality.dev/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/snowstorm-public-dailybuild.kodality.dev/privkey.pem; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/snowstorm.termx.org/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/snowstorm.termx.org/privkey.pem; # managed by Certbot
     include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 }
 ```
 
-
-### Helm <i class="mdi mdi-ubuntu"></i>
-Snowstorm Server can be installed by [Helm chart](https://gitlab.com/kodality-public/kodality-helm/-/tree/master/charts/snowstorm).
-
-**NB!** This is not an official chart. It's made only for testing purposes.
 

@@ -1,4 +1,4 @@
-TermX offers tight integration with [Snowstorm server](page:snowstorm) using its internal [API](https://snowstorm.kodality.dev/swagger-ui.html).
+TermX offers tight integration with [Snowstorm server](page:snowstorm) using its internal [API](https://snowstorm.termx.org/swagger-ui.html).
 
 ## Editions
 SNOMED CT is managed and distributed by various organizations and national bodies in different countries, and they may create their editions of SNOMED CT to meet their specific needs. 

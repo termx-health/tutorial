@@ -1,5 +1,5 @@
 This page list possible important features and refactoring ideas for future major versions.
-[Suggest new features / improvements](https://op.kodality.com/projects/kts/work_packages/create_new?type=4)
+[Suggest new features / improvements](https://github.com/termx-health/termx-server/issues)
 
 # 3.0 Offline snapshots
 > These are not set in stone and only serve as a discussion point.

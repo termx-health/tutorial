@@ -44,11 +44,11 @@ Instruction to setup Keycloak:
   - Access type -> "public"
   - Standard Flow Enabled - "on"
   - Direct Access Grants Enabled - "on"
-  - Valid redirect url - url where TermX deployed (for example https://termx.kodality.dev/*)
-  - Web origin - url where TermX deployed (for example https://termx.kodality.dev). NB! Ensure that there are no slash "/" at the end!
+  - Valid redirect url - url where TermX deployed (for example https://dev.termx.org/*)
+  - Web origin - url where TermX deployed (for example https://dev.termx.org). NB! Ensure that there are no slash "/" at the end!
   - Backchannel Logout Session Required - "on"
 - Add roles (picture below shows default configuration)
-![keycloak_roles.png](https://wiki.kodality.dev/terminology-server/keycloak_roles.png)
+![keycloak_roles.png](files/wiki/keycloak_roles.png)
 - Client scope
 	- Ensure that "roles" belong to "Assigned Default Client Scopes" in the section "Default Client Scopes".
   - Ensure that "offline_access" belong to "Assigned Optional Client Scopes" in the section "Optional Client Scopes".
@@ -58,11 +58,11 @@ Instruction to setup Keycloak:
   - Add to ID token - "on"
   - Add to access token - "on"
   - Add to userinfo - "on"
-![keycloak_mapper.png](https://wiki.kodality.dev/terminology-server/keycloak_mapper.png)
+![keycloak_mapper.png](files/wiki/keycloak_mapper.png)
 - If you manage users directly through Keycloak
 	- Add "offline_access" in "client scope"
   - Add required "roles" in your created client
-![keycloak_user.png](https://wiki.kodality.dev/terminology-server/keycloak_user.png)
+![keycloak_user.png](files/wiki/keycloak_user.png)
 
 ## Github login
 Add new identity provider with type Github. Redirect URI, Client ID and secret are provided by Github after registering new Authorized Oauth app either by personal or organization account https://github.com/settings/applications.
@@ -70,22 +70,22 @@ Add new identity provider with type Github. Redirect URI, Client ID and secret a
 
 ### Admin role mapper
 If you would like to automatically assing admin role to all Github users you should create a mapper under Github identity provider:
-![mapper.png](https://wiki.kodality.dev/mapper.png)
+![mapper.png](files/wiki/mapper.png)
 
 # Keycloak 21
-The interface looks different in the newer version of Keycloak. If you use Keycloak 21.0.1, here is how to set up a basic configuration to work with Kodality: 
+The interface looks different in the newer version of Keycloak. If you use Keycloak 21.0.1, here is how to set up a basic configuration to work with TermX: 
 
 - Open the Keycloak administration console. 
 - In the left-hand dropdown menu, choose the option **Create Realm**. 
-![keycloak-administration-ui-create-realm.png](https://wiki.kodality.dev/terminology-server/keycloak-administration-ui-create-realm.png)
-- In the resulting form it suffices to enter the **Realm name** for your Kodality installation, e.g. *terminology*. If you are migrating from a different Keycloak installation or restorign from backup, you may also choose to upload the realm .json file here and realm info will be recreated. 
-- Once the realm is created, make sure it is selected in the realm selection drop-down on the left side. Choose the menu option **Clients**. Besides the default clients already listed on the screen, a specific client for Kodality should be created by clicking the **Create client** button. 
+![keycloak-administration-ui-create-realm.png](files/wiki/keycloak-administration-ui-create-realm.png)
+- In the resulting form it suffices to enter the **Realm name** for your TermX installation, e.g. *terminology*. If you are migrating from a different Keycloak installation or restorign from backup, you may also choose to upload the realm .json file here and realm info will be recreated. 
+- Once the realm is created, make sure it is selected in the realm selection drop-down on the left side. Choose the menu option **Clients**. Besides the default clients already listed on the screen, a specific client for TermX should be created by clicking the **Create client** button. 
 - Enter a **Client ID** of your choosing, e.g. terminology-server and click **Next**. The next screen displays the **Capability config**. Make sure that both **Client authentication** and **Authorization** is off and click **Next**. 
 - The next screen displays **Login settings**: 
-	- **Valid redirect URIs**  and **Valid post logout redirect URIs** should be set to the URL where Kodality is hosted, e.g. https://terminology.kodality.dev/* (note the *mandatory wildcard \** at the end). If testing on localhost, you may be using http:// instead of https://. 
-  - **Web origins** should be set to the URL where codality is hosted with *no trailing slash*, e.g. https://terminology.kodality.dev
-- Next you should configure the user roles that will be available to users and passed to Kodality after authentication. Frome the menu on the left, choose **Clients** and select the client that you have just created, e.g. *terminology-server*. From the tabs under the client name, select **Roles**. Initially there will be no roles assigned to the client. Click on the **Create role** button to assign four roles that are recognised by Kodality: *kts-admin, kts-publisher, kts-editor, kts-viewer*. After entering the Role name of each role, click **Save** and go back to client roles to add another role until all the roles are in the list. The roles tab should resemble the image below. 
-![keycloak-administration-ui-client-roles-tab.png](https://wiki.kodality.dev/terminology-server/keycloak-administration-ui-client-roles-tab.png)
+	- **Valid redirect URIs**  and **Valid post logout redirect URIs** should be set to the URL where TermX is hosted, e.g. https://tx.termx.org/* (note the *mandatory wildcard \** at the end). If testing on localhost, you may be using http:// instead of https://. 
+  - **Web origins** should be set to the URL where codality is hosted with *no trailing slash*, e.g. https://tx.termx.org
+- Next you should configure the user roles that will be available to users and passed to TermX after authentication. Frome the menu on the left, choose **Clients** and select the client that you have just created, e.g. *terminology-server*. From the tabs under the client name, select **Roles**. Initially there will be no roles assigned to the client. Click on the **Create role** button to assign four roles that are recognised by TermX: *kts-admin, kts-publisher, kts-editor, kts-viewer*. After entering the Role name of each role, click **Save** and go back to client roles to add another role until all the roles are in the list. The roles tab should resemble the image below. 
+![keycloak-administration-ui-client-roles-tab.png](files/wiki/keycloak-administration-ui-client-roles-tab.png)
 - In order for the roles to be correctly passed to codality, they must be added to the authentication token. To do this, select **Client scopes** from the left-hand menu. From the existing list of client scopes, choose the one named **roles**. Next, open the **Mappers** tab. It will list already existing role mappers. Click on the **Add mapper** button and select the option **By configuration**. Keycloak will then show a table with possible mappings.
 - In the table of mappings choose the **User Client Role** mapping and fill out the form with the following values, as shown in the image below. 
 	- **Name**: any name of your choice. 
@@ -95,23 +95,23 @@ The interface looks different in the newer version of Keycloak. If you use Keycl
   - **Token Claim Name**: *roles* (note the lower case). 
   - **Claim JSON Type**: String
   - **Add to access token**: on. 
-![keycloak-administration-ui-client-scope-mapper.png](https://wiki.kodality.dev/terminology-server/keycloak-administration-ui-client-scope-mapper.png)
+![keycloak-administration-ui-client-scope-mapper.png](files/wiki/keycloak-administration-ui-client-scope-mapper.png)
 - The newly created mapper should be visible in the list of Client scope detailes for list item roles: 
-![keycloak-administration-ui-client-scope-roles-mappers-list.png](https://wiki.kodality.dev/terminology-server/keycloak-administration-ui-client-scope-roles-mappers-list.png)
+![keycloak-administration-ui-client-scope-roles-mappers-list.png](files/wiki/keycloak-administration-ui-client-scope-roles-mappers-list.png)
 - Finally, depending on your needs and user management strategy, create one or more user groups and assign corresponding roles. 
 	- For example, you may want to have a user group with all roles. In the left-hand menu choose **Groups** and click the **Create group** button. Enter a name that reflects the roles, e.g. *terminology-superadmins*. 
   - In the list of groups, which now should contain at least the newly created group, click on the group name. In the next screen choose the tab **Role mapping** under the group's title. 
   - Click on the **Assign role** button. In the resulting dialogue it is possible to switch between two drop-down options: **Filter by realm roles** and **Filter by clients**. Select **Filter by clients**. 
-  ![keycloak-administration-ui-group-roles-assignment-filter.png](https://wiki.kodality.dev/terminology-server/keycloak-administration-ui-group-roles-assignment-filter.png)
+  ![keycloak-administration-ui-group-roles-assignment-filter.png](files/wiki/keycloak-administration-ui-group-roles-assignment-filter.png)
   - Scroll through the resulting list until you see your client's title and the relevant roles (*kts-admin, kts-editor, kts-publisher, kts-viewer*). Click checkboxes next to the roles that you would like to add to this particular group. When you are done, click the **Assign** button.  Note that depending on your list viewing options, there might be several pages of roles that you need to search through. Or you may simply enter *kts* in the Search by role name field at the top of the list. 
-  ![keycloak-administration-ui-group-roles-assignment-list.png](https://wiki.kodality.dev/terminology-server/keycloak-administration-ui-group-roles-assignment-list.png)
+  ![keycloak-administration-ui-group-roles-assignment-list.png](files/wiki/keycloak-administration-ui-group-roles-assignment-list.png)
 - Finally, select **Users** from the left-hand menu and **Create new user**. Enter the desired username. Click on the **Join Groups** button and select the group or groups that you want the user to access, e.g. *terminology-superadmins* from our previous example. You may also add the user to one or more groups from the **Groups** tab in user details. 
 - If you wish to assign the user with a password, choose the Credentials tab in user details and click the **Set password** button. 
 
-Now after entering the Kodality-web URL, the user should be redirected to the Keycloak instance for logging in. After entering a valid username and password, the user should be redirected back to the Kodality web interface and shown relevant content, e.g. code systems and value sets, top-level menu and user options. 
+Now after entering the TermX-web URL, the user should be redirected to the Keycloak instance for logging in. After entering a valid username and password, the user should be redirected back to the TermX web interface and shown relevant content, e.g. code systems and value sets, top-level menu and user options. 
 
-## Connecting Kodality to your Keycloak instance
+## Connecting TermX to your Keycloak instance
 Please remember that the realm name and client name must be set correctly in the *terminology-web* and *terminology-server* configurations as documented in the [installation guide](page:installation-guide). 
 
-If you are deploying Kodality with Keycloak on a machine other than localhost, SSL has to be setup in order for the systems to integrate correctly. If testing on localhost only, insecure HTTP connection is acceptable. In this case it is possible to run Keycloak in developer mode (with the *start-dev* key).
+If you are deploying TermX with Keycloak on a machine other than localhost, SSL has to be setup in order for the systems to integrate correctly. If testing on localhost only, insecure HTTP connection is acceptable. In this case it is possible to run Keycloak in developer mode (with the *start-dev* key).
 

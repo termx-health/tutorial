@@ -88,15 +88,15 @@ TerminologyCapabilities.codeSystem.version.code. Code systems SHALL be listed he
 
 ✅ Supported.
 +++ Example
-[/api/fhir/ValueSet/address-use@4.3.0](https://termx.kodality.dev/api/fhir/ValueSet/address-use@4.3.0)
+[/api/fhir/ValueSet/address-use@4.3.0](https://dev.termx.org/api/fhir/ValueSet/address-use@4.3.0)
 +++
 
 > Servers SHOULD generally allow multiple resources for the same canonical URL with different Resourve.version, but this is subject to business rules on the server
 
 ✅ Supported.
 +++ Example
-[CodeSystem/danik@0.0.1](https://termx.kodality.dev/api/fhir/CodeSystem/danik@0.0.1)
-[CodeSystem/danik@0.0.2](https://termx.kodality.dev/api/fhir/CodeSystem/danik@0.0.2)
+[CodeSystem/danik@0.0.1](https://dev.termx.org/api/fhir/CodeSystem/danik@0.0.1)
+[CodeSystem/danik@0.0.2](https://dev.termx.org/api/fhir/CodeSystem/danik@0.0.2)
 +++
 
 
@@ -110,8 +110,8 @@ TerminologyCapabilities.codeSystem.version.code. Code systems SHALL be listed he
 
 ✅ Accept header of 'application/fhir+json' and human-readable preview of URI are supported.
 +++ Example
-JSON preview [https://termx.kodality.dev/api/fhir/CodeSystem/appointment-type@1](https://termx.kodality.dev/api/fhir/CodeSystem/appointment-type@1).
-Preview page automatically generated for code systems. For example, URI [https://termx.kodality.dev/fhir/CodeSystem/appointment-type](https://termx.kodality.dev/fhir/CodeSystem/appointment-type).
+JSON preview [https://dev.termx.org/api/fhir/CodeSystem/appointment-type@1](https://dev.termx.org/api/fhir/CodeSystem/appointment-type@1).
+Preview page automatically generated for code systems. For example, URI [https://dev.termx.org/fhir/CodeSystem/appointment-type](https://dev.termx.org/fhir/CodeSystem/appointment-type).
 +++
 ✅ Accept header of 'text/html' is not supported.
 
@@ -188,5 +188,5 @@ Preview page automatically generated for code systems. For example, URI [https:/
 In addition to common requirements TermX provides an OpenAPI interface available through Swagger UI.
 - [TermX API](/swagger/?urls.primaryName=termx)
 - [FHIR Terminology API](/swagger/?urls.primaryName=termx-fhir)
-- [Snowstorm API](https://snowstorm-public.kodality.dev/swagger-ui.html)
+- [Snowstorm API](https://snowstorm.termx.org/swagger-ui.html)
 

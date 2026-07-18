@@ -172,12 +172,6 @@
       "lang" : "en",
       "contentType" : "markdown",
       "modifiedAt" : "2024-04-26T19:30:20.082038Z"
-    }, {
-      "name" : "Importavimas",
-      "slug" : "importavimas",
-      "lang" : "lt",
-      "contentType" : "markdown",
-      "modifiedAt" : "2023-09-22T08:35:33.270789Z"
     } ]
   }, {
     "code" : "f736fc13-91a9-4d76-8bd2-37d5d9e2e288",
@@ -543,8 +537,8 @@
     "children" : [ {
       "code" : "baafc060-866c-45a8-a7e2-7c6f7c98cb6d",
       "contents" : [ {
-        "name" : "Kodality Dependencies",
-        "slug" : "kodality-dependencies",
+        "name" : "TermX Dependencies",
+        "slug" : "dependencies",
         "lang" : "en",
         "contentType" : "markdown",
         "modifiedAt" : "2024-01-10T07:55:21.421282Z"

@@ -46,7 +46,7 @@ services:
 
   termx-server:
     restart: unless-stopped
-    image: docker.kodality.com/termx-server:latest
+    image: ghcr.io/termx-health/termx-server:latest
     container_name: termx-server
     depends_on:
       - termx-postgres
@@ -62,7 +62,7 @@ services:
       - BOB_MINIO_URL=http://termx-minio:9000
       - BOB_MINIO_ACCESS_KEY=bob
       - BOB_MINIO_SECRET_KEY=bobobobo
-      - SNOWSTORM_URL=https://snowstorm-public.kodality.dev/
+      - SNOWSTORM_URL=https://snowstorm.termx.org/
       - SNOWSTORM_BRANCH=MAIN/SNOMEDCT-EE
       - SNOWSTORM_NAMESPACE=YOUR_SNOMEDCT_NAMESPACE_IDENTIFIER
     healthcheck:
@@ -76,7 +76,7 @@ services:
 
   termx-web:
     restart: unless-stopped
-    image: docker.kodality.com/termx-web:latest
+    image: ghcr.io/termx-health/termx-web:latest
     container_name: termx-web
     depends_on:
       - termx-server
@@ -117,7 +117,7 @@ services:
 
   fsh-chef:
     restart: unless-stopped
-    image: docker.kodality.com/fsh-chef:latest
+    image: ghcr.io/termx-health/fsh-chef:latest
     container_name: fsh-chef
     ports:
       - 8500:3000
@@ -132,7 +132,7 @@ services:
 
   termx-fml-editor:
     restart: unless-stopped
-    image: docker.kodality.com/termx-fml-editor:latest
+    image: ghcr.io/termx-health/termx-fml-editor:latest
     container_name: termx-fml-editor
     ports:
       - 8502:80
@@ -174,11 +174,6 @@ Move to the folder with `docker-compose.yml` (in our example `termx`).
 docker-compose stop
 ```
 
-## Helm
-
-TermX can be installed by [Helm chart](https://gitlab.com/kodality/kodality-helm/-/tree/master/charts/termx). 
-
-*NB: Some components have to be installed separately; thus, there is no chart in the Gitlab project!*
 
 
 
