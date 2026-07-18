@@ -1,5 +1,7 @@
 TermX includes built-in **task management** to coordinate the editorial work around terminology. Tasks connect a unit of work — a review, an approval, a translation proposal, a concept-linkage request — to the resource it concerns, so the work is tracked in context rather than in a separate tool.
 
+![Task list](files/tutorial/tasks.png)
+
 ## Where tasks appear
 
 - On a resource **summary** (code system, value set, concept map, …) a card lists the tasks connected to that resource. By default only active tasks are shown; *All tasks* reveals the full history.

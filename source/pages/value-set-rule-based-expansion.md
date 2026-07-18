@@ -12,6 +12,10 @@ Every rule is based on an exact code system and code system version. A rule can 
 
 If a rule specifies no limitations, all concepts of the code system are included.
 
+The version summary shows the rule and its resolved expansion — for example a `body-site` value set whose single rule includes *all SNOMED CT concepts where concept is-a 442083009*:
+
+![Value set version with a rule-based definition](files/tutorial/value-set-summary.png)
+
 > Use the "eye" icon next to a rule to **preview** the concepts it selects — including SNOMED CT rules — before you commit the version.
 {.is-info}
 

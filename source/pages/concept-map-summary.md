@@ -2,6 +2,8 @@
 
 Every [concept map](page:concept-map) has a summary dashboard, organised into a header and cards — the same layout as the [code system summary](page:code-system-summary).
 
+![Map set summary](files/tutorial/map-set-summary.png)
+
 The header provides the concept map name and links to:
 - **Edit** — the concept map form, where the concept map data can be changed.
 - **Provenance** — the change history of the selected concept map.

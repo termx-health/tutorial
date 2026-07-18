@@ -1,5 +1,7 @@
 The value set list can be opened from the menu or the landing page. It shows all [value sets](page:value-set) available in the space.
 
+![Value set list](files/tutorial/value-set-list.png)
+
 The list provides:
 - basic value set information (id, name, URI) with expandable additional details
 - search by text occurrences in the value set `id`, `name`, `title` and `description`
