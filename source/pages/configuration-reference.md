@@ -36,7 +36,7 @@ This page is a consolidated reference of the environment variables used to confi
 | `BOB_MINIO_ACCESS_KEY` | `minio` | Access key |
 | `BOB_MINIO_SECRET_KEY` | `minio123` | Secret key |
 
-> `BOB_MINIO_*` and `MINIO_URL`/`MINIO_ACCESS_KEY`/`MINIO_SECRET_KEY` bind to the same `bob.minio.*` properties — **prefer `BOB_MINIO_*`** (it disambiguates the app credentials from the MinIO server's `MINIO_ROOT_USER`/`MINIO_ROOT_PASSWORD`). If the URL is unset, object storage is disabled and uploads return `503`. See the [MinIO service](page:minio-service).
+> Use the **`BOB_MINIO_*`** names — the `BOB_` prefix keeps the app's access credentials distinct from the MinIO server's own root account (`MINIO_ROOT_USER`/`MINIO_ROOT_PASSWORD`). If the URL is unset, object storage is disabled and uploads return `503`. See the [MinIO service](page:minio-service).
 {.is-info}
 
 ### Large imports
