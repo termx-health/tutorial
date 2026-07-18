@@ -3,6 +3,7 @@ site:
   title: TermX tutorial
   description: Guide to the TermX terminology, wiki and modelling platform.
   lang: en
+  base: /tutorial/     # GitHub project page (termx-health.github.io/tutorial/)
 
 source:
   format: termx            # space.json + pages.json + input/*.md
