@@ -35,7 +35,7 @@ For data storage, a PostgreSQL database is used. When starting the server defaul
 
 ### Proxy adapters
 #### SNOMED CT
-SNOMED ECL language is supported through the proxy adapter. KTS SNOMED proxy adapter integrated with Snowstorm server. It transforms  SNOMED queries into Snowstorm API. Since complex requests also take time in Snowstorm, the cache mechanism was implemented in a terminology server that keeps the most frequently used requests in memory and returns answers without turning to a proxy.
+SNOMED ECL language is supported through the proxy adapter. The TermX SNOMED proxy adapter is integrated with the Snowstorm server. It transforms  SNOMED queries into Snowstorm API. Since complex requests also take time in Snowstorm, the cache mechanism was implemented in a terminology server that keeps the most frequently used requests in memory and returns answers without turning to a proxy.
 
 ### Data model
 The project conceptual design was inspired by the HL7 CTS2 standard and the specification of the FHIR terminology module. The main resources for composing terminology are: Concept, CodeSystem, ValueSet, MapSet, NamingSystem, and AssociationType. Connections between these resources add meaning and significance to the terminology data, allowing the creation of simple classifiers. FHIR describes the basics of versioning and the concept mapping structure. But for comprehensive versioning, language support, and more - complex structures are required, which can be done using CTS2.
@@ -43,10 +43,10 @@ The project conceptual design was inspired by the HL7 CTS2 standard and the spec
 ## Technical view
 ### Frameworks and servers
 - Terminology server
-  - Java 17+
-  - Micronaut 3+
+  - Java 25+
+  - Micronaut 4+
 - Web application
-  - Angular 16+
+  - Angular 21+
   - Any web server (Ngnix or Apache) for SSL offload and reverse proxy
 - Database
   - PostgreSQL 14+
@@ -58,7 +58,7 @@ The project conceptual design was inspired by the HL7 CTS2 standard and the spec
   - Sushi, GoFSH
   - PlantUML
 - Orchestration
-  - Any tool for Docker container orchestration (for example Kubernetos)
+  - Any tool for Docker container orchestration (for example Kubernetes)
   
 
 ```drawio

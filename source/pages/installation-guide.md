@@ -3,7 +3,7 @@
 Docker-compose installation contains 3 components: backend server, frontend application and database.
 
 
-In case you have your own DB instance you may omit **terminology-postgres** service from the YAML file and configure DB user/password for terminology server application in the **server.env** file.
+In case you have your own DB instance you may omit the **termx-postgres** service from the YAML file and configure the DB user/password for the terminology server application in the **server.env** file.
 
 
 
@@ -39,7 +39,7 @@ services:
     env_file:
       - server.env
     environment:
-      - DB_URL=jdbc:postgresql://termx-postgres:5432/termserver
+      - DB_URL=jdbc:postgresql://termx-postgres:5432/termx
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://termx-server:8200/health" ]
       interval: 1s
@@ -62,7 +62,7 @@ services:
 
   termx-postgres:
     restart: unless-stopped
-    image: postgres:14
+    image: postgres:18
     shm_size: 1g
     container_name: termx-postgres
     volumes:
@@ -101,7 +101,7 @@ services:
   
   fsh-chef:
     restart: unless-stopped
-    image: ghcr.io/termx-health/fsh-chef:latest
+    image: ghcr.io/termx-health/termx-chef:latest
     container_name: fsh-chef
     ports:
       - 8500:3000
@@ -117,7 +117,7 @@ services:
 
   termx-fml-editor:
     restart: unless-stopped
-    image: ghcr.io/termx-health/termx-fml-editor:latest
+    image: ghcr.io/termx-health/termx-fml:latest
     container_name: termx-fml-editor
     environment:
       - BASE_HREF=/fml-editor/
@@ -125,7 +125,7 @@ services:
       - 8502:80
 ```
 
-**terminology-server** and **terminology-web** docker tags are equal to version from release notes. TODO add link
+**termx-server** and **termx-web** docker tags match the platform version from the [release notes](page:release-notes). The `latest` tag always points at the newest release.
 
 +++
 
@@ -136,7 +136,7 @@ services:
 Server environment variables.
 
 ```plaintext
-DB_URL=jdbc:postgresql://terminology-postgres:5432/termserver #should be changed when postgres database is not defined in docker-compose.yml
+DB_URL=jdbc:postgresql://termx-postgres:5432/termx #should be changed when postgres database is not defined in docker-compose.yml
 DB_APP_PASSWORD=test #change to whatever you like
 DB_ADMIN_PASSWORD=test #change to whatever you like
 DB_POOL_SIZE=10 #default pool size
@@ -146,56 +146,52 @@ MICRONAUT_SERVER_CORS_ENABLED=true# for development only
 MICRONAUT_SERVER_CORS_CONFIGURATIONS_UI_ALLOWED_ORIGINS=https://dev.termx.org
 
 SNOWSTORM_URL=https://snowstorm.termx.org/ #base url of Snowstorm server
-SNOWSTORM_USER=termserver-app #basic-auth username
-SNOWSTORM_PASSWORD=xxxx #basic-auth password
 SNOWSTORM_BRANCH=MAIN/SNOMEDCT-EE
-SNOWSTORM_NAMESPACE=1000181 #for Estonian NRC
 
-GITHUB_CLIENT_ID=xxxx
-GITHUB_CLIENT_SECRET=xxxx
-GITHUB_APP_ID=xxxx
 GITHUB_APP_NAME=xxxx
 
-KEYCLOAK_URL=https://sso.termx.dev/admin/realms/terminology
-KEYCLOAK_SSO_URL=https://sso.termx.dev/realms/terminology/protocol/openid-connect
-KEYCLOAK_CLIENT_ID=term-service
-KEYCLOAK_CLIENT_SECRET=xxxx
+TERMX_WEB_URL=http://localhost:4200
+CHEF_URL=http://fsh-chef:3000 #internal URL of the Chef (SUSHI/GoFSH) service
 
-BOB_MINIO_URL=http://172.17.0.1:9100
+# Object storage (Minio) — backs the Binary Object Bank (Bob):
+# Wiki attachments and SNOMED / LOINC archive uploads.
+BOB_MINIO_URL=http://termx-minio:9000
 BOB_MINIO_ACCESS_KEY=xxxx
 BOB_MINIO_SECRET_KEY=xxxx
 
-TERMX_WEB_URL=http://localhost:4200
+# SMTP email is optional; when unset, notifications are silently skipped.
+#SMTP_ENABLED=true
+#SMTP_HOST=smtp.example.org
+#SMTP_PORT=587
+#SMTP_USERNAME=noreply@example.org
+#SMTP_PASSWORD=xxxx
+#SMTP_FROM=noreply@termx.org
+#SMTP_TO_IMPORT=admin@example.org
 ```
 
 #### Database
-- DB_URL. The address of DB server. 
-- DB_APP_PASSWORD. The name of the application user in DB. 
-- DB_ADMIN_PASSWORD. The name of the DB user used to create the database and propagate SQL scripts. 
+- DB_URL. The JDBC address of the DB server (host `termx-postgres` is the Postgres service name inside the compose network).
+- DB_APP_PASSWORD. The password of the application user (`tx_app`) in the DB.
+- DB_ADMIN_PASSWORD. The password of the admin user (`tx_admin`) used to create the schema and run Liquibase migrations.
 
 #### SNOMED
-- SNOWSTORM_URL. The root URL of the Snowstorm server. 
-- SNOWSTORM_BRANCH. The SNOMED edition on the Snowstorm server is used by default. For example: `SNOWSTORM_BRANCH=MAIN/SNOMEDCT-EE` for Estonian Edition, `SNOWSTORM_BRANCH=MAIN` for International Edition.
-- SNOWSTORM_USER and SNOWSTORM_PASSWORD. In the case your Snowstorm server uses basic authentication.
-- SNOWSTORM_NAMESPACE. The SNOMED CT Namespace Identifier was used to generate the concept and description identifier. Find your namespace from the list: https://cis.ihtsdotools.org/info/index.html?home=namespaces. 
-      
-#### Github
-- GITHUB_APP_NAME. The GitHub App. Read more information on [GitHub application page](page:github-application). 
-- GITHUB_CLIENT_ID. The GitHub App client ID. Check the GitHub [manual](https://docs.github.com/en/apps/creating-github-apps/registering-a-github-app/registering-a-github-app) for registering Apps. You can find personal GitHub Apps [here](https://github.com/settings/apps).
-- GITHUB_CLIENT_SECRET. The GitHub App secret.
+- SNOWSTORM_URL. The root URL of the [Snowstorm server](page:snowstorm-server).
+- SNOWSTORM_BRANCH. The SNOMED edition on the Snowstorm server used by default. For example `SNOWSTORM_BRANCH=MAIN/SNOMEDCT-EE` for the Estonian Edition, `SNOWSTORM_BRANCH=MAIN` for the International Edition.
 
-#### Static site generation
-- TERMX_WEB_URL. The URL will be used as the root URL during Jekyll's static site generation. 
+#### Github
+- GITHUB_APP_NAME. The GitHub App used for content publishing. Read more on the [GitHub application page](page:github-app). Register the App following the GitHub [manual](https://docs.github.com/en/apps/creating-github-apps/registering-a-github-app/registering-a-github-app); the client ID and secret are configured for that App.
+
+#### Object storage
+- BOB_MINIO_URL, BOB_MINIO_ACCESS_KEY, BOB_MINIO_SECRET_KEY. Connection to the S3-compatible [MinIO service](page:minio-service) that stores Wiki attachments and terminology archive uploads (the "Binary Object Bank", Bob). If the object store URL is not set, object storage is disabled and uploads return `503`. The equivalent `MINIO_URL` / `MINIO_ACCESS_KEY` / `MINIO_SECRET_KEY` names bind to the same properties.
+
+#### Email
+- SMTP_*. Optional SMTP configuration for import notifications. Check status at `GET /management/email/status`.
 
 #### Redirect to OAuth SSO
-- OAUTH_JWKS_URL. The OAuth endpoint to validate JWT and access SSO API. 
-
-#### Users
-- KEYCLOAK URL, SSO_URL, CLIENT_ID and SECRET used for querying the list of users from Keyclaok
-
+- OAUTH_JWKS_URL. The OAuth JWKS endpoint used to validate JWT access tokens against your SSO server.
 
 #### CORS
-- MICRONAUT_SERVER_CORS_CONFIGURATIONS_UI_ALLOWED_ORIGINS. In the case of CORS, specify the root path to your web URL. 
+- MICRONAUT_SERVER_CORS_CONFIGURATIONS_UI_ALLOWED_ORIGINS. When serving the web app from a different origin, specify the root path to your web URL. 
 
 
 ### web.env
@@ -205,6 +201,7 @@ Frontend environment variables.
 BASE_HREF=/
 OAUTH_ISSUER=https://sso.termx.dev/realms/terminology
 OAUTH_CLIENT_ID=term-client
+OAUTH_SCOPE=openid
 
 UI_LANGUAGES=["en","fr"]
 DEFAULT_LANGUAGE=fr
@@ -213,6 +210,11 @@ EXTRA_LANGUAGES={"pl":{"en":"Polish","fr":"Polonais"}}
 
 SNOWSTORM_URL=https://snowstorm.termx.org/
 SNOWSTORM_DAILY_BUILD_URL=https://snowstorm.termx.org/
+SNOMED_BROWSER_URL=https://snomed.termx.org/
+
+GUEST_DISABLED=false
+SKIN=helex
+BRANDING=TermX
 ```
 
 #### Deployment
@@ -251,8 +253,8 @@ SNOWSTORM_DAILY_BUILD_URL=https://snowstorm.termx.org/
 - **Default:** `/en`.
 
 `UI_LANGUAGES`
-- Languages supported in the user interface. The list of supported languages listed [here](https://github.com/termx-health/termx-web/tree/main/app/src/assets/i18n?ref_type=heads). You should add a translation file if you want to have UI in your language.
-- **Default:** `'en', 'et', 'lt', 'de', 'fr', 'nl'`
+- Languages supported in the user interface. The list of supported languages is listed [here](https://github.com/termx-health/termx-web/tree/main/app/src/assets/i18n). You should add a translation file if you want to have UI in your language.
+- **Default:** `'en', 'et', 'lt', 'de', 'fr', 'nl', 'cs'`
 
 `CONTENT_LANGUAGES`
 - List of languages used in the multilingual inputs. If a language is missing from the list of supported languages, specify it as an additional language.
@@ -261,12 +263,31 @@ SNOWSTORM_DAILY_BUILD_URL=https://snowstorm.termx.org/
 `EXTRA_LANGUAGES`
 - Languages may be used in the multilingual inputs and inputs. It should be presented as JSON where language code is key and pairs language+translation for every UI language should be added.
 
+`OAUTH_SCOPE`
+- OAuth2 scopes requested during login. **Default:** `openid`.
+
+`GUEST_DISABLED`
+- When `true`, disables the anonymous Guest account so that only authenticated users may access the application. **Default:** `false`.
+
+#### Branding
+`SKIN`
+- Named UI skin. **Default:** `helex`.
+
+`SKIN_URL`
+- URL of an external skin stylesheet, used instead of a bundled `SKIN`.
+
+`BRANDING`
+- Product name shown in the UI header.
+
 #### Snowstorm
 `SNOWSTORM_URL`
-- The address of [Snowstorm server](page:snowstorm-server)
+- The address of the [Snowstorm server](page:snowstorm-server) used for SNOMED CT expansion and lookup.
 
 `SNOWSTORM_DAILY_BUILD_URL`
-- The address of Snowstorm server's daily build.
+- The address of the Snowstorm server's daily build.
+
+`SNOMED_BROWSER_URL` / `SNOMED_BROWSER_DAILY_BUILD_URL`
+- The address of the SNOMED CT browser (and its daily build) linked from the [SNOMED CT browser](page:snomed-ct-browser).
 
 
 You can validate configured parameters locally in [env.js](http://localhost:4200/assets/env.js).
@@ -327,13 +348,12 @@ It's expected that only Postgres service will be up and running since the termin
 
 ```plaintext
 docker exec -i termx-postgres psql -U postgres <<-EOSQL
-CREATE ROLE termserver_admin LOGIN PASSWORD 'test' NOSUPERUSER INHERIT NOCREATEDB CREATEROLE NOREPLICATION;
-CREATE ROLE termserver_app   LOGIN PASSWORD 'test' NOSUPERUSER INHERIT NOCREATEDB CREATEROLE NOREPLICATION;
-CREATE ROLE termserver_viewer NOLOGIN NOSUPERUSER INHERIT NOCREATEDB NOCREATEROLE NOREPLICATION;
-CREATE DATABASE termserver WITH OWNER = termserver_admin ENCODING = 'UTF8' TABLESPACE = pg_default CONNECTION LIMIT = -1;
-grant temp on database termserver to termserver_app;
-grant connect on database termserver to termserver_app;
-CREATE EXTENSION IF NOT EXISTS hstore schema public;
+CREATE ROLE tx_admin LOGIN PASSWORD 'test' NOSUPERUSER INHERIT NOCREATEDB CREATEROLE NOREPLICATION;
+CREATE ROLE tx_app   LOGIN PASSWORD 'test' NOSUPERUSER INHERIT NOCREATEDB CREATEROLE NOREPLICATION;
+CREATE ROLE tx_viewer NOLOGIN NOSUPERUSER INHERIT NOCREATEDB NOCREATEROLE NOREPLICATION;
+CREATE DATABASE termx WITH OWNER = tx_admin ENCODING = 'UTF8' TABLESPACE = pg_default CONNECTION LIMIT = -1;
+grant temp on database termx to tx_app;
+grant connect on database termx to tx_app;
 EOSQL
 ```
 
@@ -341,7 +361,7 @@ In case you are using an existing database, run SQL commands between **EOSQL** v
 
 ##  **Checking everything is ok**
 
-After DB is created, run `docker-compose restart` and check for application server logs via `docker logs -f terminology-server` . There should not be any errors or java stack traces. If you see a log line similar to this
+After the DB is created, run `docker-compose restart` and check the application server logs via `docker logs -f termx-server`. There should not be any errors or java stack traces. If you see a log line similar to this
 
 ```plaintext
 13:08:57.472 [main] INFO  io.micronaut.runtime.Micronaut - Startup completed in 7037ms. Server Running: http://2048db663c4b:8200
@@ -431,6 +451,6 @@ server {
 Please make sure you are using SSL. Please change **\dev.termx.org** domain configurations with your own domain. **80 → 443** redirect is a must.
  ***sso.termx.dev** in this example is an SSO server domain.* {.is-success}
 
-SSL certificates are managed by [Certbot](sso.termx.dev).
+SSL certificates are managed by [Certbot](https://certbot.eff.org/).
 
 

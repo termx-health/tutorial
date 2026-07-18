@@ -1,7 +1,7 @@
 ## OpenId Connect
 TermX does not provide its own management of the users, user groups, and their relations. 
 TermX uses the standard [OpenId Connect](https://openid.net/connect/) protocol for user authentication. 
-TermX is designed to be integrated with the security infrastructure of the end user or with OpenID Connect compatible authentication server (such as [Keycloak](/terminology-server/guide/authentication#keycloak)).
+TermX is designed to be integrated with the security infrastructure of the end user or with an OpenID Connect compatible authentication server (such as [Keycloak](page:keycloak-server)).
 
 We expect that information about the user and their groups will come from the SSO server. We expect that SSO will be configured to use the client's LDAP or Active Directory or custom User Management solution. The application uses attribute *roles* from */userinfo* endpoint provided by OpenID Connect provider.
 
@@ -17,10 +17,10 @@ Content-Type: application/json
 {
   "sub": "4417eef9-e6e8-4a29-b821-d9756b138202",
   "roles": [
-    "kts-editor",
-    "kts-viewer",
-    "kts-admin",
-    "kts-publisher"
+    "termx-editor",
+    "termx-viewer",
+    "termx-admin",
+    "termx-publisher"
   ],
   "preferred_username": "some_username"
 }
@@ -83,10 +83,10 @@ The interface looks different in the newer version of Keycloak. If you use Keycl
 - Enter a **Client ID** of your choosing, e.g. terminology-server and click **Next**. The next screen displays the **Capability config**. Make sure that both **Client authentication** and **Authorization** is off and click **Next**. 
 - The next screen displays **Login settings**: 
 	- **Valid redirect URIs**  and **Valid post logout redirect URIs** should be set to the URL where TermX is hosted, e.g. https://tx.termx.org/* (note the *mandatory wildcard \** at the end). If testing on localhost, you may be using http:// instead of https://. 
-  - **Web origins** should be set to the URL where codality is hosted with *no trailing slash*, e.g. https://tx.termx.org
-- Next you should configure the user roles that will be available to users and passed to TermX after authentication. Frome the menu on the left, choose **Clients** and select the client that you have just created, e.g. *terminology-server*. From the tabs under the client name, select **Roles**. Initially there will be no roles assigned to the client. Click on the **Create role** button to assign four roles that are recognised by TermX: *kts-admin, kts-publisher, kts-editor, kts-viewer*. After entering the Role name of each role, click **Save** and go back to client roles to add another role until all the roles are in the list. The roles tab should resemble the image below. 
+  - **Web origins** should be set to the URL where TermX is hosted with *no trailing slash*, e.g. https://tx.termx.org
+- Next you should configure the user roles that will be available to users and passed to TermX after authentication. Frome the menu on the left, choose **Clients** and select the client that you have just created, e.g. *terminology-server*. From the tabs under the client name, select **Roles**. Initially there will be no roles assigned to the client. Click on the **Create role** button to assign four roles that are recognised by TermX: *termx-admin, termx-publisher, termx-editor, termx-viewer*. After entering the Role name of each role, click **Save** and go back to client roles to add another role until all the roles are in the list. The roles tab should resemble the image below. 
 ![keycloak-administration-ui-client-roles-tab.png](files/wiki/keycloak-administration-ui-client-roles-tab.png)
-- In order for the roles to be correctly passed to codality, they must be added to the authentication token. To do this, select **Client scopes** from the left-hand menu. From the existing list of client scopes, choose the one named **roles**. Next, open the **Mappers** tab. It will list already existing role mappers. Click on the **Add mapper** button and select the option **By configuration**. Keycloak will then show a table with possible mappings.
+- In order for the roles to be correctly passed to TermX, they must be added to the authentication token. To do this, select **Client scopes** from the left-hand menu. From the existing list of client scopes, choose the one named **roles**. Next, open the **Mappers** tab. It will list already existing role mappers. Click on the **Add mapper** button and select the option **By configuration**. Keycloak will then show a table with possible mappings.
 - In the table of mappings choose the **User Client Role** mapping and fill out the form with the following values, as shown in the image below. 
 	- **Name**: any name of your choice. 
   - **Client ID**: choose your client's name from the dropdown, e.g. *terminology-server*.
@@ -103,7 +103,7 @@ The interface looks different in the newer version of Keycloak. If you use Keycl
   - In the list of groups, which now should contain at least the newly created group, click on the group name. In the next screen choose the tab **Role mapping** under the group's title. 
   - Click on the **Assign role** button. In the resulting dialogue it is possible to switch between two drop-down options: **Filter by realm roles** and **Filter by clients**. Select **Filter by clients**. 
   ![keycloak-administration-ui-group-roles-assignment-filter.png](files/wiki/keycloak-administration-ui-group-roles-assignment-filter.png)
-  - Scroll through the resulting list until you see your client's title and the relevant roles (*kts-admin, kts-editor, kts-publisher, kts-viewer*). Click checkboxes next to the roles that you would like to add to this particular group. When you are done, click the **Assign** button.  Note that depending on your list viewing options, there might be several pages of roles that you need to search through. Or you may simply enter *kts* in the Search by role name field at the top of the list. 
+  - Scroll through the resulting list until you see your client's title and the relevant roles (*termx-admin, termx-editor, termx-publisher, termx-viewer*). Click checkboxes next to the roles that you would like to add to this particular group. When you are done, click the **Assign** button.  Note that depending on your list viewing options, there might be several pages of roles that you need to search through. Or you may simply enter *termx* in the Search by role name field at the top of the list. 
   ![keycloak-administration-ui-group-roles-assignment-list.png](files/wiki/keycloak-administration-ui-group-roles-assignment-list.png)
 - Finally, select **Users** from the left-hand menu and **Create new user**. Enter the desired username. Click on the **Join Groups** button and select the group or groups that you want the user to access, e.g. *terminology-superadmins* from our previous example. You may also add the user to one or more groups from the **Groups** tab in user details. 
 - If you wish to assign the user with a password, choose the Credentials tab in user details and click the **Set password** button. 
@@ -111,7 +111,7 @@ The interface looks different in the newer version of Keycloak. If you use Keycl
 Now after entering the TermX-web URL, the user should be redirected to the Keycloak instance for logging in. After entering a valid username and password, the user should be redirected back to the TermX web interface and shown relevant content, e.g. code systems and value sets, top-level menu and user options. 
 
 ## Connecting TermX to your Keycloak instance
-Please remember that the realm name and client name must be set correctly in the *terminology-web* and *terminology-server* configurations as documented in the [installation guide](page:installation-guide). 
+Please remember that the realm name and client name must be set correctly in the *termx-web* and *termx-server* configurations as documented in the [installation guide](page:installation-guide). 
 
 If you are deploying TermX with Keycloak on a machine other than localhost, SSL has to be setup in order for the systems to integrate correctly. If testing on localhost only, insecure HTTP connection is acceptable. In this case it is possible to run Keycloak in developer mode (with the *start-dev* key).
 

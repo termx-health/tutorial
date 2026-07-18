@@ -1,4 +1,4 @@
-KTS provides a list of adapters to import different terminologies. The solution architecture offers the ability to add your own custom adapter.
+TermX provides a list of adapters to import different terminologies. The solution architecture offers the ability to add your own custom adapter.
 
 # FHIR
 ### Source
@@ -83,7 +83,7 @@ When you create a new code system you should specify also the *title* and *URI*.
 With a selection "*Generate ValueSet too*" you can manage when an application will create a new value set with a rule that includes all concepts from created code system.
 
 ### Source
-Before the import of the code system please read the information about the [code system structure](/terminology-server/guide/resources#relations).  
+Before the import of the code system please read the information about the [code system structure](page:code-system).  
 You can specify the source as a link to the file or upload the file to the server.
 ![file-import-upload-link.png](files/71/file-import-upload-link.png){width=500}
 > When you use a link to the file you should ensure that terminology server (not your computer) have access to the link. It means link should be accessible witout VPN or IP limitation.
@@ -92,11 +92,11 @@ You can specify the source as a link to the file or upload the file to the serve
 ![file-import-upload-file.png](files/71/file-import-upload-file.png){width=500}
 
 ### File content
-Pressing the "Analyze" button KTS will validate the file, compose the list of columns, detect their types and formats and scan for empty columns. The results will be presented in a table format:
+Pressing the "Analyze" button TermX will validate the file, compose the list of columns, detect their types and formats and scan for empty columns. The results will be presented in a table format:
 ![file-import-structure-initial.png](files/71/file-import-structure-initial.png){width=500}
 For every column from the CSV file, you can (re)define the name of the property in the code system, the data type, format (in the case of date datatype), and language (in the case of text datatype). Checkbox "import" to indicate when to import a column or to skip it.  
-By default we propose 4 predefined properties: *concept-code* - should be used as a unique key; *display* - official name; *definition* - the long name of the concept; *description* - additional description (typically represents rules on how to use concept). You can define new properties by choosing "ADD NEW". If you don't specify the KTS property then the CSV column name will be used as property.  
-If you have many files with similar structures you can also use the predefined templates with mappings to KTS properties, datatypes, format, and languages. In this case, you should describe only columns that are missing in the template (on the picture below template "[pub.e-tervis.ee](http://pub.e-tervis.ee)" used).  
+By default we propose 4 predefined properties: *concept-code* - should be used as a unique key; *display* - official name; *definition* - the long name of the concept; *description* - additional description (typically represents rules on how to use concept). You can define new properties by choosing "ADD NEW". If you don't specify the TermX property then the CSV column name will be used as property.  
+If you have many files with similar structures you can also use the predefined templates with mappings to TermX properties, datatypes, format, and languages. In this case, you should describe only columns that are missing in the template (on the picture below template "[pub.e-tervis.ee](http://pub.e-tervis.ee)" used).  
 
 ![file-import-structure-with-template.png](files/71/file-import-structure-with-template.png){width=500}
 
@@ -234,7 +234,7 @@ You can specify the source as a link to the file or upload the file to the serve
 ![file-import-upload-file.png](files/71/file-import-upload-file.png)
 
 ### File content
-Pressing the "Analyze" button KTS will validate the file, compose the list of columns.
+Pressing the "Analyze" button TermX will validate the file, compose the list of columns.
 From proccesed columns you can select only 2 columns to import - one is concept code and another display. Display is optional.
 ![file-import-vs-mapping.png](files/71/file-import-vs-mapping.png)
 
@@ -341,7 +341,7 @@ The file should contain next columns:
 | dependsOnSystem | Code system of the property. | Optional| 
 | dependsOnValue | Value of the property. | Optional| 
 
-Example of empty [file](/terminology-server/concept-map.csv).
+Example of an empty concept map file: `concept-map.csv`.
 
 # LOINC
 ### Source 
@@ -374,7 +374,7 @@ File locations in downloaded zip file:
 -   Download releases (required account): [https://mlds.ihtsdotools.org](https://mlds.ihtsdotools.org)
 
 ### Import
--   Read about RF2 import on the [Snowstorm page](/terminology-server/snowstorm).
+-   Read about RF2 import on the [Snowstorm page](page:snowstorm).
 
 # WHO ICF
 
@@ -382,10 +382,10 @@ File locations in downloaded zip file:
 -   Official site: [https://www.who.int/standards/classifications/international-classification-of-functioning-disability-and-health](https://www.who.int/standards/classifications/international-classification-of-functioning-disability-and-health)
 -   ICF browser: [https://icd.who.int/dev11/proposals/f/icf/en](https://icd.who.int/dev11/proposals/f/icf/en)
 -   Official download (required WHO account): [https://icd.who.int/dev11/downloads](https://icd.who.int/dev11/downloads)
--   ICF CSV file [icf.csv](/terminology-server/icf.csv)
+-   ICF CSV file `icf.csv`
 -   The example segment from the ICF LinearizationMiniOutput-ICHI-en file  
 ![icf-example.png](files/71/icf-example.png){width=500}
--   You can use the predefined template with mappings to KTS properties, datatypes, format, and languages. (on the picture below template "icf" used).
+-   You can use the predefined template with mappings to TermX properties, datatypes, format, and languages. (on the picture below template "icf" used).
 ![icf-file-import-template.png](files/71/icf-file-import-template.png){width=500}
 
 

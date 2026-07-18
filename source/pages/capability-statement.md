@@ -1,5 +1,11 @@
-FHIR [specify](https://github.com/FHIR/fhir-test-cases/blob/master/tx/requirements.md) several criteria applicable to any terminology server.
-The current page describe how FHIR requirements covered in TermX.
+FHIR [specifies](https://github.com/FHIR/fhir-test-cases/blob/master/tx/requirements.md) several criteria applicable to any terminology server.
+This page describes how those FHIR requirements are covered in TermX.
+
+> Since release 3.3, TermX's terminology operations (`$expand`, `$validate-code`, `$lookup`, `$translate`,
+> `$batch-validate-code`) are validated against the official HL7 FHIR **tx-ecosystem** conformance test
+> suite, and TermX ships a **built-in conformance test runner and dashboard** so you can execute the suite
+> against your own deployment. See the [release notes](page:release-notes).
+{.is-info}
 
 # Metadata
 > The server SHALL return a CapabilityStatement from {root}/metadata

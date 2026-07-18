@@ -7,7 +7,7 @@ This means it runs on **Linux**, **macOS**, and **Windows** as well as container
 ### Database
 TermX requires a PostgreSQL server as data storage. You may use the existing server or install a new instance using the docker image.
 
-- :elephant: PostgreSQL **12 or later**
+- :elephant: PostgreSQL **14 or later** (the current images ship PostgreSQL 18)
 {.grid-list}
 
 > It's recommended you use the latest version of PostgreSQL when possible.
@@ -18,13 +18,13 @@ Java and web applications are packaged into Docker containers and may run from t
 
 
 ### **Web Server** :cloud:
-KTS web application is web server agnostic, you can use your favourite web server (such as Nginx or Apache) or run it w/o a web server. However, you might need to put a reverse proxy in front of the web app if you require SSL offload or advanced network / DNS configuration.
+The TermX web application is web server agnostic, you can use your favourite web server (such as Nginx or Apache) or run it w/o a web server. However, you might need to put a reverse proxy in front of the web app if you require SSL offload or advanced network / DNS configuration.
 
 ### Domain
 We recommend using a dedicated sub-domain / domain *(e.g. `termx.example.com`)* for the TermX web app.
 
 ### CPU
-KTS may run on a single CPU core. However, **2 cores or more are recommended** to fully make use of the background workers.
+TermX may run on a single CPU core. However, **2 cores or more are recommended** to fully make use of the background workers.
 We recommend 2 cores for a database server, and 1 core for the application and web applications.
 
 ### RAM
@@ -34,7 +34,7 @@ If you use the separate virtual machines give at least 2BG RAM to the database s
 ### Storage
 Storage requirements are based on the content you will enter. The size of the code systems may vary in size from several kilobytes (in case of your small code systems) to 3 GB (in case of SNOMED).
 
-At least 10 GB of storage dedicated to KTS is needed and 20 GB is recommended.
+At least 10 GB of storage dedicated to TermX is needed and 20 GB is recommended.
 
 ### Additional requirements depends on the options you use
 However additional modules require additional resources. Here the list of references to the pages with requirements:
