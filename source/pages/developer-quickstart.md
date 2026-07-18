@@ -1,7 +1,18 @@
 > **WARNING!**
 > This guide is intended for local quickstart and not suited for production environments.{.is-warning}
 
-You can follow the step-by-step instructions described below for a better understanding of the installation process, or you can simply clone the [termx-quick-start repository](https://github.com/termx-health/termx-quick-start/) and run TermX locally.
+The quickest way to run TermX locally is to clone the [**termx-quick-start**](https://github.com/termx-health/termx-quick-start/) repository and start it:
+
+```s
+git clone https://github.com/termx-health/termx-quick-start.git
+cd termx-quick-start
+docker-compose pull && docker-compose up -d
+```
+
+The repository is the **authoritative, always-current** source for the local stack — its `docker-compose.yml`, `pginit.sql` and `*.env` files are maintained alongside the platform.
+
+> The step-by-step walkthrough below reproduces a **simplified** version of that stack to explain how the pieces fit together. It is illustrative and may lag behind the repository — for an up-to-date, runnable setup always use the [termx-quick-start](https://github.com/termx-health/termx-quick-start/) repository.
+{.is-info}
 
 ---
 
@@ -13,12 +24,12 @@ Create folder (for example `termx`) and move to this folder.
 ### 1. Create postgres init file
 *pginit.sql*
 ```
-CREATE ROLE termserver_admin LOGIN PASSWORD 'test' NOSUPERUSER INHERIT NOCREATEDB CREATEROLE NOREPLICATION;
-CREATE ROLE termserver_app   LOGIN PASSWORD 'test' NOSUPERUSER INHERIT NOCREATEDB CREATEROLE NOREPLICATION;
-CREATE ROLE termserver_viewer NOLOGIN NOSUPERUSER INHERIT NOCREATEDB NOCREATEROLE NOREPLICATION;
-CREATE DATABASE termserver WITH OWNER = termserver_admin ENCODING = 'UTF8' TABLESPACE = pg_default CONNECTION LIMIT = -1;
-grant temp on database termserver to termserver_app;
-grant connect on database termserver to termserver_app;
+CREATE ROLE tx_admin LOGIN PASSWORD 'test' NOSUPERUSER INHERIT NOCREATEDB CREATEROLE NOREPLICATION;
+CREATE ROLE tx_app   LOGIN PASSWORD 'test' NOSUPERUSER INHERIT NOCREATEDB CREATEROLE NOREPLICATION;
+CREATE ROLE tx_viewer NOLOGIN NOSUPERUSER INHERIT NOCREATEDB NOCREATEROLE NOREPLICATION;
+CREATE DATABASE termx WITH OWNER = tx_admin ENCODING = 'UTF8' TABLESPACE = pg_default CONNECTION LIMIT = -1;
+grant temp on database termx to tx_app;
+grant connect on database termx to tx_app;
 
 set core.env  = 'dev';
 ALTER SYSTEM SET core.env = 'dev';
@@ -32,7 +43,7 @@ version: '3.9'
 services:
   termx-postgres:
     restart: unless-stopped
-    image: postgres:14
+    image: postgres:18
     shm_size: 1g
     container_name: termx-postgres
     environment:
@@ -51,7 +62,7 @@ services:
     depends_on:
       - termx-postgres
     environment:
-      - DB_URL=jdbc:postgresql://termx-postgres:5432/termserver
+      - DB_URL=jdbc:postgresql://termx-postgres:5432/termx
       - DB_APP_PASSWORD=test
       - DB_ADMIN_PASSWORD=test
       - DB_POOL_SIZE=10
@@ -64,7 +75,6 @@ services:
       - BOB_MINIO_SECRET_KEY=bobobobo
       - SNOWSTORM_URL=https://snowstorm.termx.org/
       - SNOWSTORM_BRANCH=MAIN/SNOMEDCT-EE
-      - SNOWSTORM_NAMESPACE=YOUR_SNOMEDCT_NAMESPACE_IDENTIFIER
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://termx-server:8200/health" ]
       interval: 1s
@@ -117,7 +127,7 @@ services:
 
   fsh-chef:
     restart: unless-stopped
-    image: ghcr.io/termx-health/fsh-chef:latest
+    image: ghcr.io/termx-health/termx-chef:latest
     container_name: fsh-chef
     ports:
       - 8500:3000
@@ -132,7 +142,7 @@ services:
 
   termx-fml-editor:
     restart: unless-stopped
-    image: ghcr.io/termx-health/termx-fml-editor:latest
+    image: ghcr.io/termx-health/termx-fml:latest
     container_name: termx-fml-editor
     ports:
       - 8502:80

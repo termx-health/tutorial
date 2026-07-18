@@ -1,21 +1,23 @@
 TermX privilege is an entity to describe fine-grained access to the resource or group of resources. Attribute-based access control ([ABAC](https://en.wikipedia.org/wiki/Attribute-based_access_control)) is used to access granting. 
 
 The privilege description includes the following attributes:
-- `Category` with values "CodeSystem", "ValueSet", "ConceptMap", any of CodeSystem or ValueSet or ConceptMap, and "admin".
-- `Action` with values "view", "edit", "publish"
-- `Resources` any resource from the list of code systems, value sets, and concept maps. 
+- `Resource type` with values such as "CodeSystem", "ValueSet", "MapSet", "Wiki", "ObservationDefinition", `Any` (any resource type), or "Admin".
+- `Action` with values "read", "triage", "write", "maintain".
+- `Resources` any resource from the list of code systems, value sets, and map sets (or `*` for all resources of the type).
+
+Internally a privilege resolves to a set of dotted strings `resourceId.resourceType.action` — for example `*.CodeSystem.write` (write on every code system) or `snomed-ct.CodeSystem.read` (read on the SNOMED CT code system). An `Admin` resource grants `*.*.*` (full access).
 
 Example of privilege configuration
 | Decsription | Access configuration |
 |-------------|----------------------|
-| The viewer of any resource | Category=any, Action=view |
-| Editor of any CodeSystem | Category=CodeSystem, Action=edit |
-| Publisher of the 2 exact value sets | Category=ValueSet, Action=publish, Resources=[languages,publication-status] |
-| Superuser access | Category=admin |
+| The viewer of any resource | Resource type=Any, Action=read |
+| Editor of any CodeSystem | Resource type=CodeSystem, Action=write |
+| Maintainer of the 2 exact value sets | Resource type=ValueSet, Action=maintain, Resources=[languages,publication-status] |
+| Superuser access | Resource type=Admin |
 
 Every user may have one or many privileges.
-Information about user privileges comes through federated services proxy, where federated services proxy is OpenId Connect compatible SSO server (for example Keycloack) connected to LDAP or Active Directory.
-After login application maps user groups to KTS privileges and uses this information during the user session. 
+Information about user privileges comes through federated services proxy, where federated services proxy is OpenId Connect compatible SSO server (for example Keycloak) connected to LDAP or Active Directory.
+After login application maps user groups to TermX privileges and uses this information during the user session. 
 
 Diagramm below explains how privileges work.
 ```drawio
@@ -26,17 +28,17 @@ PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8v
 # Default configuration
 We provide default configuration suitable in the environment with a limited number of terminology editors.
 Default installation contains 4 privileges:
-- `kts-viewer` Provides read access to all resources in the terminology server.
-- `kts-editor` Gives the permission to view, create and modify all resources, incl import ability.
-- `kts-publisher` Same as *editor* with permission to publish resources.
-- `kts-admin` The user can perform all actions in the application.
+- `termx-viewer` Provides read access to all resources in the terminology server.
+- `termx-editor` Gives the permission to view, create and modify all resources, incl import ability.
+- `termx-publisher` Same as *editor* with permission to publish resources.
+- `termx-admin` The user can perform all actions in the application.
 {.grid-list}
 
 # Setup for your federated services
 It includes 3 steps:
 - Create user groups in your LDAP or Active directories with the same names of the privileges
 	- For example in the default configuration. 
-  - The simplest setup may include only `kts-admin` group.
+  - The simplest setup may include only `termx-admin` group.
   - In the case of your specific policies, you can rename default privileges.
 - Assign users to the created groups.
 - Configure OpenId Connect compatible SSO (for example Keycloak) to use your federated setup.

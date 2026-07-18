@@ -1,6 +1,38 @@
  - [Roadmap *See planned features / improvements for future releases.*](page:roadmap)
  {.links-list}
 
+# 3.3 FHIR terminology conformance & integrations
+> Released on **July 9th, 2026**
+{.is-info}
+- TermX's `$expand`, `$validate-code`, `$lookup`, `$translate` and `$batch-validate-code` operations were brought in line with the official HL7 FHIR **tx-ecosystem** test suite (version-aware, hierarchical expansion, first-class CodeSystem supplements, structured `OperationOutcome`), with a built-in **conformance test runner and dashboard**.
+- The ValueSet expansion engine was unified to a single strict per-version engine guarded by a parity gate.
+- **Wiki PDF/HTML export** — any wiki page, or a whole space, can be exported ordered by the space menu.
+- **Azure DevOps** git synchronization alongside the existing GitHub workflow.
+- External terminology servers can be reached with OAuth2, API-key or basic auth, with secrets encrypted at rest.
+- SNOMED / LOINC imports stream from the object store with delta and national-edition support.
+- StructureDefinitions gained a **UML diagram** tab; deployments can apply a **skin** and data-driven global search.
+
+# 3.2 SNOMED RF2 redesign & terminology depth
+> Released on **May 14th, 2026**
+{.is-info}
+- The **SNOMED CT RF2** import was reworked into a scan-first, streaming pipeline with dry-run analysis, explicit import modes and phase-by-phase progress.
+- Hierarchical concept trees can be **filtered in place** for faster navigation of large code systems.
+- Column-to-field **import mappings can be saved** and reused across imports.
+- The **privileges model** and the **GitHub-backed content workflow** were reworked into one consistent naming model.
+- Code systems, value sets and map sets resolve to their **latest applicable version**, with semantic-version sorting.
+- **FHIR ConceptMap `$closure`** operation.
+- The frontend was rebuilt on **Angular 21** and the shared web-commons library.
+
+# 3.1 Platform modernisation, terminology depth & FHIR ecosystem
+> Released on **March 24th, 2026**
+{.is-info}
+- Platform modernisation: **Java 25**, package/API refactor, a new build & release pipeline with container-registry publishing, and Sonar/SpotBugs quality gates.
+- The flagship **FHIR Terminology Ecosystem** integration — discover and resolve which terminology servers across the HL7 ecosystem host a given code system, via a no-login web page or REST API.
+- Full **CodeSystem supplement** support (translations and extra properties layered on a base code system) with supplement-aware `$lookup`.
+- **ValueSet rule-expansion preview** — expand a single include rule (including SNOMED) before saving a version.
+- **UCUM / FHIR-UCUM** service (validate, analyse, convert, canonicalise) and localised UCUM display names.
+- **Role-based task visibility**, **email notifications** for long imports, and CSV/XLSX export & round-trip editing.
+
 # 2.3 SNOMED authoring, synchronization with external servers
 > Released on **November 3d, 2023**
 {.is-info}
@@ -29,7 +61,7 @@
 {.is-info}
 - FML Editor. Added ability to design FML transformations through graphical interface
 - GitHub support. Added ability to synchronize Wiki and vocabulary with GitHub
-- 100% support of [Capability statement](/wiki/termx-tutorial/capability-statement) and TerminologyCapabilities
+- 100% support of [Capability statement](page:capability-statement) and TerminologyCapabilities
 - Added property-based view of the concepts in the code system
 - Added defined entity properties
 - Export of results of SNOMED ECL queries
@@ -157,8 +189,8 @@ Web app:
 This build brings new modules:
 - Swagger UI
 - OpenID SSO support
-- Keycloack authentication
-	- Check out the [docs](/terminology-server/guide/authentication) on how to set it up.
+- Keycloak authentication
+	- Check out the [docs](page:authentication) on how to set it up.
 and functionalities:
 - WCAG 2.1 AA support in web application
 
