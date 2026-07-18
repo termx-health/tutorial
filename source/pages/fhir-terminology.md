@@ -162,5 +162,13 @@ Body:
 FHIR server (or FHIR API interface in terminology server) may propose a custom operator for a specific purpose.
 For example, the TermX server proposes operator $sync which performs a smart merge of code systems and value sets instead of hard overriding.
 
+## FHIR API behaviour
+
+### Summarised search responses
+TermX supports the FHIR R5 `_summary` parameter (`true` / `text` / `data` / `count` / `false`) on read and search. **Search responses are summarised by default** for `CodeSystem`, `ValueSet` and `ConceptMap` — a `GET /fhir/CodeSystem` list omits the heavy concept content (and carries a `SUBSETTED` meta tag) unless you pass `_summary=false`. This keeps list responses small; request the full resource explicitly when you need it. The defaults are configurable per resource type via `TERMX_FHIR_CS_SEARCH_DEFAULT_SUMMARY` / `_VS_` / `_CM_` (see the [configuration reference](page:configuration-reference)). `_summary` is not applied to operations such as `$expand` or `$lookup`.
+
+### Caching (ETag)
+Every `GET`/`HEAD` on `/fhir/*` returns a weak `ETag` (of the form `W/"<crc32>-<len>"`) and `Cache-Control: public, max-age=0, must-revalidate`. A follow-up request with `If-None-Match` gets a **304 Not Modified** when the resource is unchanged, so clients (and a reverse-proxy cache) can revalidate cheaply instead of re-transferring large resources.
+
 
 
