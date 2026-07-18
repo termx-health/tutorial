@@ -9,5 +9,5 @@ EduPatient model to Patient transformation.
 ![](files/189/EduPatient.png)
 
 ## Links
-Demo: EduPatient model to Patient [transformation](https://termx.kodality.dev/modeler/transformation-definitions/202/edit)
-Download: [source](https://gitlab.com/kodality/terminology/termx-fml)
+Demo: EduPatient model to Patient [transformation](https://dev.termx.org/modeler/transformation-definitions/202/edit)
+Download: [source](https://github.com/termx-health/termx-fml)

@@ -47,4 +47,4 @@ It includes 3 steps:
 Select Menu -> Tools (1) -> Privileges (2). The list of privileges will be shown (3). 
 Click on the privileges code (4) to redirect to the detailed privilege view. 
 Button "Add privilege" (5) redirects to adding the new privilege.
-![privileges.png](https://wiki.kodality.dev/terminology-server/privileges.png)
+![privileges.png](files/wiki/privileges.png)

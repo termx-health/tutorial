@@ -38,7 +38,7 @@ jobs:
         run: |
           docker run \
           -v ${{ github.workspace }}/__source:/__source -v ${{ github.workspace }}/_site:/template/_site  \
-          docker.kodality.com/termx-jekyll-builder /bin/bash -c "chmod -R 777 ./_generate.sh && ./_generate.sh"
+          ghcr.io/termx-health/termx-jekyll-builder /bin/bash -c "chmod -R 777 ./_generate.sh && ./_generate.sh"
 
       - name: Upload _site
         uses: actions/upload-artifact@v3
@@ -79,7 +79,7 @@ During the transformation, the parser:
 * Converts Draw.<span>io diagrams to SVG.
 * Converts PlantUML diagrams to SVGs and saves the output into assets (*requires an internet connection for UML transformation*).
 * Renders Mermaid diagrams and saves the output into assets.
-* Prepares StructureDefinition blocks for display using the `@kodality-web/structure-definition-viewer` component.
+* Prepares StructureDefinition blocks for display using the `@termx-health/structure-definition-viewer` component.
   * Transforms FSH code blocks into JSON files.
   * Replaces the `{{def:sd-code}}` block with content from the corresponding `sd-code.json` file found in `__source/resources/structure-definitions`.
 
@@ -90,4 +90,4 @@ After everything is transferred to the right places, the Jekyll generation is ru
 
 
 
-*The source code can be found [here](https://gitlab.com/kodality/terminology/termx-ssg).*
+*The source code can be found [here](https://github.com/termx-health/termx-ssg).*

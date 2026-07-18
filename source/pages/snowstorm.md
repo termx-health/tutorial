@@ -23,7 +23,7 @@ TermX utilize Snowstorm SNOMED CT API including
 - SNOMED CT Terminology Services [Course Guide](https://elearning.ihtsdotools.org/mod/book/view.php?id=6135&chapterid=1809).
 - Snowstorm [@SNOMED eLearning site](https://snowstorm-training.snomedtools.org/snowstorm/snomed-ct/swagger-ui.html).
 - Snowstorm FHIR API [Postman collection](https://documenter.getpostman.com/view/462462/S1TVXJ3k).
-- The TermX uses [public](https://snowstorm-public.kodality.dev/swagger-ui/index.html) or [private](https://snowstorm.kodality.dev/swagger-ui.html) Snowstorm API for queries and edition SNOMED data.
+- The TermX uses [public](https://snowstorm.termx.org/swagger-ui/index.html) or [private](https://snowstorm.termx.org/swagger-ui.html) Snowstorm API for queries and edition SNOMED data.
 - [Snowstorm server installation guide](page:snowstorm-server).
 
 ***

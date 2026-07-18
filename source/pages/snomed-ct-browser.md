@@ -1,5 +1,5 @@
 TermX provide special processing of SNOMED CT terminology as an external terminology. TermX use  [Snowstorm](page:snowstorm) server for storing of SNOMED releases and components.
-Whenever TermX provides own graphical [browser](https://termx.kodality.dev/integration/snomed/dashboard) for searching and managing SNOMED CT components, that represents the current selected branch state used by TermX.
+Whenever TermX provides own graphical [browser](https://dev.termx.org/integration/snomed/dashboard) for searching and managing SNOMED CT components, that represents the current selected branch state used by TermX.
 ![SNOMED CT browser](files/88/snomed-browser.png){title="SNOMED CT browser"}
 
 With **TermX SNOMED CT browser** you can

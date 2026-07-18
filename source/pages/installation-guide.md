@@ -32,7 +32,7 @@ version: '3.9'
 services:
   termx-server:
     restart: unless-stopped
-    image: docker.kodality.com/termx-server:latest
+    image: ghcr.io/termx-health/termx-server:latest
     container_name: termx-server
     depends_on:
       - termx-postgres
@@ -51,7 +51,7 @@ services:
 
   termx-web:
     restart: unless-stopped
-    image: docker.kodality.com/termx-web:latest
+    image: ghcr.io/termx-health/termx-web:latest
     container_name: termx-web
     depends_on:
       - termx-server
@@ -101,7 +101,7 @@ services:
   
   fsh-chef:
     restart: unless-stopped
-    image: docker.kodality.com/fsh-chef:latest
+    image: ghcr.io/termx-health/fsh-chef:latest
     container_name: fsh-chef
     ports:
       - 8500:3000
@@ -117,7 +117,7 @@ services:
 
   termx-fml-editor:
     restart: unless-stopped
-    image: docker.kodality.com/termx-fml-editor:latest
+    image: ghcr.io/termx-health/termx-fml-editor:latest
     container_name: termx-fml-editor
     environment:
       - BASE_HREF=/fml-editor/
@@ -141,11 +141,11 @@ DB_APP_PASSWORD=test #change to whatever you like
 DB_ADMIN_PASSWORD=test #change to whatever you like
 DB_POOL_SIZE=10 #default pool size
 JAVA_OPTS=-Xmx1800m #default max heap size
-OAUTH_JWKS_URL=https://auth.kodality.dev/realms/terminology/protocol/openid-connect/certs #JWKS url of your oauth SSO server
+OAUTH_JWKS_URL=https://sso.termx.dev/realms/terminology/protocol/openid-connect/certs #JWKS url of your oauth SSO server
 MICRONAUT_SERVER_CORS_ENABLED=true# for development only
-MICRONAUT_SERVER_CORS_CONFIGURATIONS_UI_ALLOWED_ORIGINS=https://termx.kodality.dev
+MICRONAUT_SERVER_CORS_CONFIGURATIONS_UI_ALLOWED_ORIGINS=https://dev.termx.org
 
-SNOWSTORM_URL=https://snowstorm.kodality.dev/ #base url of Snowstorm server
+SNOWSTORM_URL=https://snowstorm.termx.org/ #base url of Snowstorm server
 SNOWSTORM_USER=termserver-app #basic-auth username
 SNOWSTORM_PASSWORD=xxxx #basic-auth password
 SNOWSTORM_BRANCH=MAIN/SNOMEDCT-EE
@@ -156,8 +156,8 @@ GITHUB_CLIENT_SECRET=xxxx
 GITHUB_APP_ID=xxxx
 GITHUB_APP_NAME=xxxx
 
-KEYCLOAK_URL=https://auth.kodality.dev/admin/realms/terminology
-KEYCLOAK_SSO_URL=https://auth.kodality.dev/realms/terminology/protocol/openid-connect
+KEYCLOAK_URL=https://sso.termx.dev/admin/realms/terminology
+KEYCLOAK_SSO_URL=https://sso.termx.dev/realms/terminology/protocol/openid-connect
 KEYCLOAK_CLIENT_ID=term-service
 KEYCLOAK_CLIENT_SECRET=xxxx
 
@@ -203,7 +203,7 @@ Frontend environment variables.
 
 ```plaintext
 BASE_HREF=/
-OAUTH_ISSUER=https://auth.kodality.dev/realms/terminology
+OAUTH_ISSUER=https://sso.termx.dev/realms/terminology
 OAUTH_CLIENT_ID=term-client
 
 UI_LANGUAGES=["en","fr"]
@@ -211,8 +211,8 @@ DEFAULT_LANGUAGE=fr
 CONTENT_LANGUAGES=["en","fr","pl"]
 EXTRA_LANGUAGES={"pl":{"en":"Polish","fr":"Polonais"}}
 
-SNOWSTORM_URL=https://snowstorm-public.kodality.dev/
-SNOWSTORM_DAILY_BUILD_URL=https://snowstorm-public-dailybuild.kodality.dev/
+SNOWSTORM_URL=https://snowstorm.termx.org/
+SNOWSTORM_DAILY_BUILD_URL=https://snowstorm.termx.org/
 ```
 
 #### Deployment
@@ -251,7 +251,7 @@ SNOWSTORM_DAILY_BUILD_URL=https://snowstorm-public-dailybuild.kodality.dev/
 - **Default:** `/en`.
 
 `UI_LANGUAGES`
-- Languages supported in the user interface. The list of supported languages listed [here](https://gitlab.com/kodality/terminology/termx-web/-/tree/main/app/src/assets/i18n?ref_type=heads). You should add a translation file if you want to have UI in your language.
+- Languages supported in the user interface. The list of supported languages listed [here](https://github.com/termx-health/termx-web/tree/main/app/src/assets/i18n?ref_type=heads). You should add a translation file if you want to have UI in your language.
 - **Default:** `'en', 'et', 'lt', 'de', 'fr', 'nl'`
 
 `CONTENT_LANGUAGES`
@@ -289,7 +289,7 @@ POSTGRES_DB=postgres
 
 ### swagger.env
 ```plaintext
-CONFIG_URL=https://termx.kodality.dev/swagger/swagger-config.json
+CONFIG_URL=https://dev.termx.org/swagger/swagger-config.json
 OAUTH_CLIENT_ID=term-client
 OAUTH_REALM=terminology
 OAUTH_USE_PKCE=true
@@ -303,11 +303,11 @@ BASE_URL=/swagger
 {
   "urls": [
     {
-      "url": "https://termx.kodality.dev/api/swagger/termx.yml",
+      "url": "https://dev.termx.org/api/swagger/termx.yml",
       "name": "termx"
     },
     {
-      "url": "https://termx.kodality.dev/api/fhir-swagger",
+      "url": "https://dev.termx.org/api/fhir-swagger",
       "name": "termx-fhir"
     }
   ],
@@ -355,10 +355,10 @@ then the application is ready to receive requests from the browser.
 
 ```plaintext
 server {
-    server_name termx.kodality.dev;
+    server_name dev.termx.org;
 
     location / {
-        add_header Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval'; img-src *; style-src 'self' 'unsafe-inline'; connect-src auth.kodality.dev terminology.kodality.dev termx.kodality.dev" always;
+        add_header Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval'; img-src *; style-src 'self' 'unsafe-inline'; connect-src sso.termx.dev tx.termx.org dev.termx.org" always;
         proxy_pass http://localhost:9000/;
     }
 
@@ -407,19 +407,19 @@ server {
     }
 
     listen 443 ssl; # managed by Certbot
-    ssl_certificate /etc/letsencrypt/live/termx.kodality.dev/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/termx.kodality.dev/privkey.pem; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/dev.termx.org/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/dev.termx.org/privkey.pem; # managed by Certbot
     include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 }
 
 server {
-    if ($host = termx.kodality.dev) {
+    if ($host = dev.termx.org) {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 
 
-    server_name termx.kodality.dev;
+    server_name dev.termx.org;
     listen 80;
     return 404; # managed by Certbot
 }
@@ -428,9 +428,9 @@ server {
 `server_name` value is the application domain where the application is running.
 +++
 
-Please make sure you are using SSL. Please change **\*.kodality.dev** domain configurations with your own domain. **80 → 443** redirect is a must.
- ***auth.kodality.dev** in this example is an SSO server domain.* {.is-success}
+Please make sure you are using SSL. Please change **\dev.termx.org** domain configurations with your own domain. **80 → 443** redirect is a must.
+ ***sso.termx.dev** in this example is an SSO server domain.* {.is-success}
 
-SSL certificates are managed by [Certbot](auth.kodality.dev).
+SSL certificates are managed by [Certbot](sso.termx.dev).
 
 

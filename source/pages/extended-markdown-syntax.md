@@ -33,14 +33,14 @@ Supported namespaces:
 
 ### Page Links 
 - [Relative link](/spaces)
-- [Absolute link](https://termx.kodality.dev/spaces)
+- [Absolute link](https://dev.termx.org/spaces)
 - [Page in current Space](page:markdown-syntax)
 - [Page from other Space](page:healthsense/mammography)
 
 +++ Code
 ```
 [Relative link](/spaces)
-[Absolute link](https://termx.kodality.dev/spaces)
+[Absolute link](https://dev.termx.org/spaces)
 [Page in current Space](page:markdown-syntax)
 [Page from other Space](page:healthsense/mammography)
 ```

@@ -76,7 +76,7 @@ will return object with resource CodeSystem with 1 parameter, 3 concepts, where 
 ```
 CodeSystem with ICD10 diagnosis (or localized version of ICD-10) is another use-case of usage of the clinical terminology. But request 
 ```http
-GET https://kodality.org/fhir/CodeSystem/icd10-uz
+GET https://termx.org/fhir/CodeSystem/icd10-uz
 ```
 will return more than 40 000 concepts and more than 200 000 properties. Processing of such value sets is time, memory and CPU consuming. As a result of this, such requests are usually not made in real-time applications. Terminology operators are used instead.
 

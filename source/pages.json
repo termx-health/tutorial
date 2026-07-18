@@ -543,8 +543,8 @@
     "children" : [ {
       "code" : "baafc060-866c-45a8-a7e2-7c6f7c98cb6d",
       "contents" : [ {
-        "name" : "Kodality Dependencies",
-        "slug" : "kodality-dependencies",
+        "name" : "TermX Dependencies",
+        "slug" : "dependencies",
         "lang" : "en",
         "contentType" : "markdown",
         "modifiedAt" : "2024-01-10T07:55:21.421282Z"

@@ -26,7 +26,7 @@ The import is identical to the code system import.
 -   ICD10 official page: [https://www.who.int/standards/classifications/classification-of-diseases](https://www.who.int/standards/classifications/classification-of-diseases)
 -   ICD10 official browser: [https://icd.who.int/browse10/2019/en#/](https://icd.who.int/browse10/2019/en#/)
 -   ICD10 official download site (you should have an account in WHO): [https://apps.who.int/classifications/apps/icd/ClassificationDownload/DLArea/Download.aspx](https://apps.who.int/classifications/apps/icd/ClassificationDownload/DLArea/Download.aspx)
--   Mirror for the latest ICD10 version: [https://kexus.kodality.com/repository/store-public/terminology/int-icd10en.zip](https://kexus.kodality.com/repository/store-public/terminology/int-icd10en.zip)
+-   Mirror for the latest ICD10 version: [https://ghcr.io/termx-health/repository/store-public/terminology/int-icd10en.zip](https://ghcr.io/termx-health/repository/store-public/terminology/int-icd10en.zip)
 
 ### Import
 -   Select from menu "Management" -> "Integration" -> "ICD10 WHO import".
@@ -41,7 +41,7 @@ The import is identical to the code system import.
 ### Source
 -   Official site of Estonian ICD10 (RHK10 in Estonian): [https://rhk.sm.ee/](https://rhk.sm.ee/)
 -   Official download site: [https://pub.e-tervis.ee/classifications/RHK-10](https://pub.e-tervis.ee/classifications/RHK-10)
--   Mirror for latest RHK10: [https://kexus.kodality.com/repository/store-public/terminology/icd10\_v8.zip](https://kexus.kodality.com/repository/store-public/terminology/icd10_v8.zip)
+-   Mirror for latest RHK10: [https://ghcr.io/termx-health/repository/store-public/terminology/icd10\_v8.zip](https://ghcr.io/termx-health/repository/store-public/terminology/icd10_v8.zip)
 
 > Please use mirror instead of the official download site. There are was removed `&gt;` tags in V01-Y99.xml file from RHK10v8.zip archive in order to prevent parser from crash.
 {.is-warning}
@@ -78,7 +78,7 @@ The import is identical to the code system import.
 ### Source
 -   Estonian official registry available from Ravimiamet x-Road services
 -   Plain text available through [http://ravimiamet.ee](http://ravimiamet.ee) website -> "e-teenused" → "Andmete allaadimine" → "ATC puu" → "ATC.csv" will be generated without hierarchy.
--   The mirror of ATC.csv is available on [https://kexus.kodality.com/repository/store-public/terminology/est-atc.csv](https://kexus.kodality.com/repository/store-public/terminology/est-atc.csv)
+-   The mirror of ATC.csv is available on [https://ghcr.io/termx-health/repository/store-public/terminology/est-atc.csv](https://ghcr.io/termx-health/repository/store-public/terminology/est-atc.csv)
 
 ### Import
 -   Select from menu "Management" -> "Integration" -> "ATC Est import".
@@ -141,7 +141,7 @@ For every line in the text file
 You can use API call for code system import. The examples of call is:
 ~~~
 curl -X 'POST' \
-  'https://termx.kodality.dev/api/file-importer/code-system/process' \
+  'https://dev.termx.org/api/file-importer/code-system/process' \
   -H 'accept: application/json' \
   -H 'Content-Type: multipart/form-data' \
   -F 'file=' \
@@ -277,7 +277,7 @@ For every line in the text file
 You can use API call for value set import. The examples of call is:
 ~~~
 curl -X 'POST' \
-  'https://termx.kodality.dev/api/file-importer/value-set/process' \
+  'https://dev.termx.org/api/file-importer/value-set/process' \
   -H 'accept: application/json' \
   -H 'Content-Type: multipart/form-data' \
   -F 'file=' \
