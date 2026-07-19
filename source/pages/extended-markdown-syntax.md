@@ -82,7 +82,7 @@ Supported properties:
 The first column shows concept hierarchy with tabbed spacing based on the CS "Hierarchy meaning" field.
 
 ### ValueSet concepts
-{{vsc:languages|5.0.0; properties=display,code; langs=en; limit=10}}
+{{vsc:languages|6.0.0; properties=display,code; langs=en; limit=10}}
 
 
 Supported properties:
