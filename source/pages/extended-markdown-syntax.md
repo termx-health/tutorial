@@ -172,3 +172,66 @@ Bob <-- Alice: Hello. Please visit https://plantuml.com/
 ```
 ~~~
 +++
+
+
+## Card grids
+
+Turn a bullet list into a responsive grid of cards with `{.card-grid}`. Each item may
+contain an image (cover), a heading (title), description text, and links tagged
+`{.button}` — rendered as action buttons. Add `.secondary` for an outlined variant or
+`.disabled` for a muted, non-clickable one.
+
+- ### Terminology
+  Author code systems, value sets, concept maps and mappings.
+  [Open](page:terminology){.button}
+- ### Wiki
+  Write documentation with smart-text, diagrams and includes.
+  [Open](page:wiki){.button}
+- ### Modeler
+  Design FHIR StructureDefinitions and FML transformations.
+  [Open](page:modeler){.button}
+  [Roadmap](page:roadmap){.button .secondary}
+{.card-grid}
+
++++ Code
+```
+- ### Terminology
+  Author code systems, value sets, concept maps and mappings.
+  [Open](page:terminology){.button}
+- ### Wiki
+  Write documentation with smart-text, diagrams and includes.
+  [Open](page:wiki){.button}
+- ### Modeler
+  Design FHIR StructureDefinitions and FML transformations.
+  [Open](page:modeler){.button}
+  [Roadmap](page:roadmap){.button .secondary}
+{.card-grid}
+```
++++
+
+Add `.cards-row` for a horizontal layout — the cover image (when present) sits on the
+left and the content on the right:
+
+- ### Authoring
+  Collaborative editing, inline comments and full version history.
+  [Learn more](page:authoring){.button}
+- ### Publisher
+  Publish Implementation Guides and static websites.
+  [Learn more](page:publisher){.button}
+{.card-grid .cards-row}
+
++++ Code
+```
+- ### Authoring
+  Collaborative editing, inline comments and full version history.
+  [Learn more](page:authoring){.button}
+- ### Publisher
+  Publish Implementation Guides and static websites.
+  [Learn more](page:publisher){.button}
+{.card-grid .cards-row}
+```
++++
+
+> Card grids are rendered by the mdbook static-site generator. In the wiki editor the
+> same content appears as an ordinary bullet list.
+{.is-info}

@@ -35,6 +35,11 @@ theme:
   skin: helex
 
 search: true
+
+# Optional site footer, shown on every page (inline HTML allowed).
+footer:
+  message: Guide to the TermX terminology, wiki & modelling platform
+  copyright: © 2026 TermX
 ```
 +++
 
@@ -113,6 +118,8 @@ mdbook builds on [VitePress](https://vitepress.dev) and uses the same Markdown e
   * Transforms FSH code blocks into JSON.
   * Replaces the `{{def:sd-code}}` block with content from the corresponding resource under `source/resources/structure-definition`.
 * Builds a full-text search index and a per-language sidebar.
+* Renders [card grids](page:extended-markdown-syntax#card-grids) (`{.card-grid}`) — bullet lists become responsive cards with cover images, titles, descriptions and action buttons.
+* Shows an optional site **footer** on every page, configured via `footer:` in `.mdbook/config.yml`.
 * Auto-detects the site base path — `/<repo>/` for a GitHub project page, or `/` for a custom domain (CNAME) or an `<owner>.github.io` page.
 
 The result is a searchable, themeable static site published straight to GitHub Pages — no artifacts to download or extra hosting step.
