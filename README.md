@@ -1,7 +1,7 @@
 # TermX tutorial
 
 Documentation for the TermX terminology, wiki and modelling platform, published
-as a static site with [**mdbook**](https://github.com/igorboss/mdbook) and hosted
+as a static site with [**mdbook**](https://github.com/helex-solutions/mdbook) and hosted
 on GitHub Pages.
 
 **Live site:** https://termx-health.github.io/tutorial/
@@ -48,13 +48,13 @@ export from TermX Wiki, so edit content in TermX, not here.
 ## Local preview
 
 ```bash
-npx github:igorboss/mdbook dev   --project .   # live-reload dev server
-npx github:igorboss/mdbook build --project .   # build to .mdbook/dist
+npx github:helex-solutions/mdbook dev   --project .   # live-reload dev server
+npx github:helex-solutions/mdbook build --project .   # build to .mdbook/dist
 ```
 
 ## Configuration
 
 Site options live in [`.mdbook/config.yml`](.mdbook/config.yml) — the theme skin,
 the FHIR `tx-server` used to expand `{{csc:}}`/`{{vsc:}}` concept tables, search,
-and menu overrides. See the [mdbook docs](https://github.com/igorboss/mdbook) for
+and menu overrides. See the [mdbook docs](https://github.com/helex-solutions/mdbook) for
 the full reference.
