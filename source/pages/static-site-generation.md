@@ -75,7 +75,7 @@ jobs:
 
       - name: Build with mdbook
         id: mdbook
-        uses: igorboss/mdbook@main
+        uses: igorboss/mdbook@v1.1.0   # pin to a release tag for reproducible builds
         with:
           project: .
 
