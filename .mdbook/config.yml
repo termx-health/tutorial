@@ -16,3 +16,10 @@ theme:
   skin: helex
 
 search: true
+
+# Site footer, shown on every page (both fields allow inline HTML/links).
+footer:
+  message: Guide to the TermX terminology, wiki &amp; modelling platform
+  copyright: >-
+    © 2026 <a href="https://termx.org">TermX</a> · Built with
+    <a href="https://github.com/igorboss/mdbook">mdbook</a>

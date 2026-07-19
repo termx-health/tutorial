@@ -22,7 +22,7 @@ jobs:
 
       - name: Build with mdbook
         id: mdbook
-        uses: igorboss/mdbook@v1.0.0
+        uses: igorboss/mdbook@v1.1.0
         with:
           project: .
 
