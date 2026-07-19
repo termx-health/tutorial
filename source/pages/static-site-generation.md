@@ -75,7 +75,7 @@ jobs:
 
       - name: Build with mdbook
         id: mdbook
-        uses: igorboss/mdbook@v1.1.2   # pin to a release tag for reproducible builds
+        uses: helex-solutions/mdbook@v1.1.2   # pin to a release tag for reproducible builds
         with:
           project: .
 
@@ -143,4 +143,4 @@ The generator produces standard SEO metadata from the export, with no extra auth
 
 Site-wide metadata — title, description, language, theme, terminology server and search — lives in the `.mdbook/config.yml` file described under [Project configuration](#project-configuration).
 
-*The source code can be found [here](https://github.com/igorboss/mdbook).*
+*The source code can be found [here](https://github.com/helex-solutions/mdbook).*

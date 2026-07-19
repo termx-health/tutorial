@@ -1,4 +1,4 @@
-# mdbook site configuration — https://github.com/igorboss/mdbook
+# mdbook site configuration — https://github.com/helex-solutions/mdbook
 site:
   title: TermX tutorial
   description: Guide to the TermX terminology, wiki and modelling platform.
@@ -22,4 +22,4 @@ footer:
   message: Guide to the TermX terminology, wiki &amp; modelling platform
   copyright: >-
     © 2026 <a href="https://termx.org">TermX</a> · Built with
-    <a href="https://github.com/igorboss/mdbook">mdbook</a>
+    <a href="https://github.com/helex-solutions/mdbook">mdbook</a>
