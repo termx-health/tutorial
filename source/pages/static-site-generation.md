@@ -75,7 +75,7 @@ jobs:
 
       - name: Build with mdbook
         id: mdbook
-        uses: helex-solutions/mdbook@v1.1.2   # pin to a release tag for reproducible builds
+        uses: helex-solutions/mdbook@v1.2.0   # pin to a release tag for reproducible builds
         with:
           project: .
 
