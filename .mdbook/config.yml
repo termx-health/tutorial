@@ -19,6 +19,7 @@ openapi:
   specs:
     termx: https://dev.termx.org/api/swagger/termx.yml
     termx-fhir: https://dev.termx.org/api/fhir-swagger
+  sort: path
   tryIt: true
 
 theme:
