@@ -151,6 +151,7 @@ SNOWSTORM_BRANCH=MAIN/SNOMEDCT-EE
 GITHUB_APP_NAME=xxxx
 
 TERMX_WEB_URL=http://localhost:4200
+TERMX_API_URL=http://localhost:8200/api #advertised to FHIR clients — see "Deployment URLs" below
 CHEF_URL=http://fsh-chef:3000 #internal URL of the Chef (SUSHI/GoFSH) service
 
 # Object storage (Minio) — backs the Binary Object Bank (Bob):
@@ -168,6 +169,11 @@ BOB_MINIO_SECRET_KEY=xxxx
 #SMTP_FROM=noreply@termx.org
 #SMTP_TO_IMPORT=admin@example.org
 ```
+
+#### Deployment URLs
+- TERMX_API_URL. The externally-reachable base URL of **this** server's API. Set it explicitly. It becomes `CapabilityStatement.implementation.url`, which is copied into the `servers` entry of `/api/fhir-swagger` — so it is what tells FHIR clients where to send their requests. Get it wrong and clients are silently directed at a different deployment. Behind nginx/TLS use your public address, e.g. `https://termx.site.org/api`.
+- TERMX_WEB_URL. The address of the web application, used to build links back to the UI (for example from the wiki static-site export).
+- CHEF_URL. The address of the Chef (SUSHI/GoFSH) service. Unlike the two above, this one is *called* by the server rather than advertised to clients, so it stays on the internal network.
 
 #### Database
 - DB_URL. The JDBC address of the DB server (host `termx-postgres` is the Postgres service name inside the compose network).
