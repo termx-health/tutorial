@@ -12,6 +12,15 @@ source:
 # FHIR terminology server for expanding {{csc:}}/{{vsc:}} at build time.
 tx-server: https://dev.termx.org/api/fhir
 
+# API reference. Both documents are public — no authentication is configured, so
+# the try-it console sends unauthenticated requests (protected TermX endpoints
+# will answer 401, the FHIR read endpoints work as-is).
+openapi:
+  specs:
+    termx: https://dev.termx.org/api/swagger/termx.yml
+    termx-fhir: https://dev.termx.org/api/fhir-swagger
+  tryIt: true
+
 theme:
   skin: helex
 

@@ -9,6 +9,8 @@ Two API surfaces are documented:
 
 The Swagger UI itself is served under `/swagger/` and can switch between the two definitions from its top bar.
 
+Both definitions are also rendered directly in this tutorial, so they are searchable alongside the rest of the documentation: [TermX API reference](page:termx-api) and [TermX FHIR API reference](page:termx-fhir-api).
+
 ## Deployment
 
 In the reference deployment the Swagger UI runs as a separate `swaggerapi/swagger-ui` container and is proxied at `/swagger` (see the [installation guide](page:installation-guide)). It is configured with `swagger-config.json`, which lists the two definition URLs, and with `swagger.env` for the OAuth client used to authorize requests from the UI.
