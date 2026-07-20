@@ -310,7 +310,7 @@ POSTGRES_DB=postgres
 
 ### swagger.env
 ```plaintext
-CONFIG_URL=https://dev.termx.org/swagger/swagger-config.json
+CONFIG_URL=/swagger/swagger-config.json
 OAUTH_CLIENT_ID=term-client
 OAUTH_REALM=terminology
 OAUTH_USE_PKCE=true
@@ -324,11 +324,11 @@ BASE_URL=/swagger
 {
   "urls": [
     {
-      "url": "https://dev.termx.org/api/swagger/termx.yml",
+      "url": "/api/swagger/termx.yml",
       "name": "termx"
     },
     {
-      "url": "https://dev.termx.org/api/fhir-swagger",
+      "url": "/api/fhir-swagger",
       "name": "termx-fhir"
     }
   ],
@@ -337,6 +337,9 @@ BASE_URL=/swagger
   ]
 }
 ```
+
+> Keep these URLs relative. An absolute hostname pins the UI to one deployment, so any other environment sharing this config loads that environment's API definitions instead of its own — and "Try it out" then executes against the wrong server. Relative URLs are resolved by the browser against whichever host serves the UI, so the same config works everywhere.
+> {.is-warning}
 
 
 
