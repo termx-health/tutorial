@@ -5,7 +5,7 @@ site:
   lang: en
 
 source:
-  format: termx            # TermX Wiki export
+  format: owliki           # Owliki wiki export
   meta: source             # space.json + pages.json + resources/ + attachments/
   pages: source/pages      # page markdown
 
