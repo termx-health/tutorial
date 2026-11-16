@@ -22,7 +22,7 @@ jobs:
 
       - name: Build with mdbook
         id: mdbook
-        uses: helex-solutions/mdbook@v1.7.0
+        uses: helex-solutions/mdbook@v1.10.0
         with:
           project: .
 
